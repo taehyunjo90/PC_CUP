@@ -1,4 +1,8 @@
+#include "add.h"
+#include <stdio.h>
+
 int main(void)
 {
-    return 0;
+    int test = add(30,40);
+    printf("%d", test);
 }
