@@ -55,7 +55,7 @@ int get_min_index(const int numbers[], const size_t element_count)
         min_value = numbers[0];
         min_index = 0;
         for (i = 1; i < element_count; ++i) {
-            if (numbers[i] < min_value){
+            if (numbers[i] < min_value) {
                 min_value = numbers[i];
                 min_index = i;
             }
@@ -73,7 +73,7 @@ int is_all_positive(const int numbers[], const size_t element_count)
     }
     
     for (i = 0; i < element_count; ++i) {
-        if (numbers[i] < 0){
+        if (numbers[i] < 0) {
             return 0;
         }
     }
@@ -116,13 +116,13 @@ int remove_at(int numbers[], const size_t element_count, const size_t index)
 {
     size_t i;
     
-    if (element_count == 0 || index > element_count) {
+    if (element_count == 0 || index >= element_count) {
         return 0;
     }
     
     for (i = 0; i < element_count; ++i) {
         if (i >= index) {
-            numbers[i] = numbers[i+1];
+            numbers[i] = numbers[i + 1];
         }
     }
     return 1;
