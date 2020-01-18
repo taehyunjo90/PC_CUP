@@ -1,21 +1,21 @@
 #include "pomoku.h"
 #include <stdio.h>
 
-size_t g_max_col = 20;
-size_t g_max_row = 20;
-size_t g_min_col = 10;
-size_t g_min_row = 10;
+const size_t MAX_COL = 20;
+const size_t MAX_ROW = 20;
+const size_t MIN_COL = 10;
+const size_t MIN_ROW = 10;
 
-int g_score_insert_row = 3;
-int g_score_insert_column = 3;
-int g_score_remove_row = 3;
-int g_socre_remove_column = 3;
-int g_score_swap_row = 2;
-int g_score_swap_column = 2;
-int g_score_copy_row = 4;
-int g_score_copy_column = 4;
+const int SCORE_INSERT_ROW = 3;
+const int SCORE_INSERT_COLUMN = 3;
+const int SCORE_REMOVE_ROW = 3;
+const int SCORE_REMOVE_COLUMN = 3;
+const int SCORE_SWAP_ROW = 2;
+const int SCORE_SWAP_COLUMN = 2;
+const int SCORE_COPY_ROW = 4;
+const int SCORE_COPY_COLUMN = 4;
 
-int g_blank_place = -1;
+const int BLANK_PLACE = -1;
 
 size_t g_col_count;
 size_t g_row_count;
@@ -34,9 +34,9 @@ void init_game(void)
     g_score[0] = 0;
     g_score[1] = 0;
     
-    for (i = 0; i < g_max_row; ++i) {
-        for (j = 0; j < g_max_col; ++j) {
-            g_board[i][j] = g_blank_place;
+    for (i = 0; i < MAX_ROW; ++i) {
+        for (j = 0; j < MAX_COL; ++j) {
+            g_board[i][j] = BLANK_PLACE;
         }
     }
 }
@@ -71,19 +71,19 @@ int get_color(const size_t row, const size_t col)
 
 int is_placeable(const size_t row, const size_t col)
 {
-   int placeable;
+   int not_exist;
    
    if (row >= get_row_count() || col >= get_column_count()) {
-       placeable = 0;
-       return placeable;
+       not_exist = 0;
+       return not_exist;
    }
    
-   if (g_board[row][col] == g_blank_place) {
-       placeable = 1;
+   if (g_board[row][col] == BLANK_PLACE) {
+       not_exist = 1;
    } else {
-       placeable = 0;
+       not_exist = 0;
    }
-   return placeable;
+   return not_exist;
    
 }
 
@@ -151,11 +151,11 @@ int insert_row(const color_t color, const size_t row)
     size_t cur_col;
     size_t reverse_i;
     
-    if (get_row_count() >= g_max_row || g_score[color] < g_score_insert_row || row > get_row_count()) {
+    if (get_row_count() >= MAX_ROW || g_score[color] < SCORE_INSERT_ROW || row > get_row_count()) {
         return 0;
     }
     
-    g_score[color] -= g_score_insert_row;
+    g_score[color] -= SCORE_INSERT_ROW;
     
     cur_row = get_row_count();
     cur_col = get_column_count();
@@ -168,7 +168,7 @@ int insert_row(const color_t color, const size_t row)
     }
     
     for (j = 0; j < cur_col; ++j) {
-        g_board[row][j] = g_blank_place;
+        g_board[row][j] = BLANK_PLACE;
     }
     
     g_row_count ++;
@@ -184,11 +184,11 @@ int insert_column(const color_t color, const size_t col)
     size_t cur_col;
     size_t reverse_i;
     
-    if (get_column_count() >= g_max_col || g_score[color] < g_score_insert_column || col > get_column_count()) {
+    if (get_column_count() >= MAX_COL || g_score[color] < SCORE_INSERT_COLUMN || col > get_column_count()) {
         return 0;
     }
 
-    g_score[color] -= g_score_insert_column;
+    g_score[color] -= SCORE_INSERT_COLUMN;
     
     cur_row = get_row_count();
     cur_col = get_column_count();
@@ -201,7 +201,7 @@ int insert_column(const color_t color, const size_t col)
     }
     
     for (j = 0; j < cur_row; ++j) {
-        g_board[j][col] = g_blank_place;
+        g_board[j][col] = BLANK_PLACE;
     }
     
     g_col_count ++;
@@ -218,11 +218,11 @@ int remove_row(const color_t color, const size_t row)
     size_t cur_row;
     size_t cur_col;
 
-    if (get_row_count() <= g_min_row || g_score[color] < g_score_remove_row || row > get_row_count() - 1) {
+    if (get_row_count() <= MIN_ROW || g_score[color] < SCORE_REMOVE_ROW || row > get_row_count() - 1) {
         return 0;
     }
     
-    g_score[color] -= g_score_remove_row;
+    g_score[color] -= SCORE_REMOVE_ROW;
     
     cur_row = get_row_count();
     cur_col = get_column_count();
@@ -234,7 +234,7 @@ int remove_row(const color_t color, const size_t row)
             }
         } else {
             for (j = 0; j < cur_col; ++j) {
-                g_board[i][j] = g_blank_place;
+                g_board[i][j] = BLANK_PLACE;
             }
         }
     }
@@ -251,11 +251,11 @@ int remove_column(const color_t color, const size_t col)
     size_t cur_row;
     size_t cur_col;
 
-    if (get_column_count() <= g_min_col || g_score[color] < g_socre_remove_column || col > get_column_count() - 1) {
+    if (get_column_count() <= MIN_COL || g_score[color] < SCORE_REMOVE_COLUMN || col > get_column_count() - 1) {
         return 0;
     }
     
-    g_score[color] -= g_socre_remove_column;
+    g_score[color] -= SCORE_REMOVE_COLUMN;
     
     cur_row = get_row_count();
     cur_col = get_column_count();
@@ -267,7 +267,7 @@ int remove_column(const color_t color, const size_t col)
             }
         } else {
             for (j = 0; j < cur_row; ++j) {
-                g_board[j][i] = g_blank_place;
+                g_board[j][i] = BLANK_PLACE;
             }
         }
     }
@@ -284,12 +284,12 @@ int swap_rows(const color_t color, const size_t row0, const size_t row1)
     int temp_for_swap;
     
     /* 실행 가능 여부 판단 -> row 가능 범위 조건 추가?*/
-    if (g_score[color] < g_score_swap_row || row0 > get_row_count() - 1 || row1 > get_row_count() - 1) {
+    if (g_score[color] < SCORE_SWAP_ROW || row0 > get_row_count() - 1 || row1 > get_row_count() - 1) {
         return 0;
     }
     
     cur_col = get_column_count();
-    g_score[color] -= g_score_swap_row;
+    g_score[color] -= SCORE_SWAP_ROW;
     
     for (i = 0; i < cur_col; ++i) {
         temp_for_swap = g_board[row0][i];
@@ -307,12 +307,12 @@ int swap_columns(const color_t color, const size_t col0, const size_t col1)
     int temp_for_swap;
     
     /* 실행 가능 여부 판단 -> row 가능 범위 조건 추가?*/
-    if (g_score[color] < g_score_swap_column || col0 > get_column_count() - 1 || col1 > get_column_count() - 1) {
+    if (g_score[color] < SCORE_SWAP_COLUMN || col0 > get_column_count() - 1 || col1 > get_column_count() - 1) {
         return 0;
     }
     
     cur_row = get_row_count();
-    g_score[color] -= g_score_swap_column;
+    g_score[color] -= SCORE_SWAP_COLUMN;
     
     for (i = 0; i < cur_row; ++i) {
         temp_for_swap = g_board[i][col0];
@@ -329,12 +329,12 @@ int copy_row(const color_t color, const size_t src, const size_t dst)
     size_t cur_col;
     
     /* 실행 가능 여부 판단 -> row 가능 범위 조건 추가?*/
-    if (g_score[color] < g_score_copy_row || src > get_row_count() - 1 || dst > get_row_count() - 1) {
+    if (g_score[color] < SCORE_COPY_ROW || src > get_row_count() - 1 || dst > get_row_count() - 1) {
         return 0;
     }
     
     cur_col = get_column_count();
-    g_score[color] -= g_score_copy_row;
+    g_score[color] -= SCORE_COPY_ROW;
     
     for (i = 0; i < cur_col; ++i) {
         g_board[dst][i] = g_board[src][i];
@@ -348,12 +348,12 @@ int copy_column(const color_t color, const size_t src, const size_t dst)
     size_t i;
     size_t cur_row;
     
-    if (g_score[color] < g_score_copy_column || src > get_column_count() - 1 || dst > get_column_count() - 1) {
+    if (g_score[color] < SCORE_COPY_COLUMN || src > get_column_count() - 1 || dst > get_column_count() - 1) {
         return 0;
     }
     
     cur_row = get_row_count();
-    g_score[color] -= g_score_copy_column;
+    g_score[color] -= SCORE_COPY_COLUMN;
     
     for (i = 0; i < cur_row; ++i) {
         g_board[i][dst] = g_board[i][src];
