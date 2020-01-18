@@ -34,8 +34,8 @@ void init_game(void)
     g_score[0] = 0;
     g_score[1] = 0;
     
-    for (i = 0; i < g_max_row; ++i){
-        for (j = 0; j < g_max_col; ++j){
+    for (i = 0; i < g_max_row; ++i) {
+        for (j = 0; j < g_max_col; ++j) {
             g_board[i][j] = g_blank_place;
         }
     }
@@ -64,33 +64,32 @@ int get_color(const size_t row, const size_t col)
 {   
     if (row >= get_row_count() || col >= get_column_count() || row == (size_t) - 1 || col == (size_t) - 1) {
         return -1;
-    }
-    else {
+    } else {
         return g_board[row][col];
     }
 }
 
 int is_placeable(const size_t row, const size_t col)
 {
-   int bool_placeable;
+   int placeable;
    
-   if (row >= get_row_count() || col >= get_column_count()){
-       bool_placeable = 0;
-       return bool_placeable;
+   if (row >= get_row_count() || col >= get_column_count()) {
+       placeable = 0;
+       return placeable;
    }
    
-   if (g_board[row][col] == g_blank_place){
-       bool_placeable = 1;
+   if (g_board[row][col] == g_blank_place) {
+       placeable = 1;
    } else {
-       bool_placeable = 0;
+       placeable = 0;
    }
-   return bool_placeable;
+   return placeable;
    
 }
 
 int place_stone(const color_t color, const size_t row, const size_t col)
 {
-    if (is_placeable(row, col)){
+    if (is_placeable(row, col)) {
         g_board[row][col] = color;
         g_score[color] += get_new_score_by_placed_stone(color, row, col);
         return 1;
@@ -123,7 +122,7 @@ int get_new_score_by_vector(const color_t color, const size_t row, const size_t 
     num_connected_stone = get_num_connected_stone(color, row, col, x, y, num_connected_stone);
     num_connected_stone = get_num_connected_stone(color, row, col, minus_x, minus_y, num_connected_stone);
     
-    if (num_connected_stone >= 5){
+    if (num_connected_stone >= 5) {
         new_score = num_connected_stone - 1 - 4;
     } else {
         new_score = 0;
@@ -136,7 +135,7 @@ int get_num_connected_stone(const color_t color, const size_t row, const size_t 
 {
     int target_board_place_stone = g_board[row][col];
     
-    if (target_board_place_stone != color || row >= get_row_count() || col >= get_column_count() || row == (size_t) - 1 || col == (size_t) - 1){
+    if (target_board_place_stone != color || row >= get_row_count() || col >= get_column_count() || row == (size_t) - 1 || col == (size_t) - 1) {
         return num_connected_stone;
     } else {
         num_connected_stone ++;
@@ -285,7 +284,7 @@ int swap_rows(const color_t color, const size_t row0, const size_t row1)
     int temp_for_swap;
     
     /* 실행 가능 여부 판단 -> row 가능 범위 조건 추가?*/
-    if (g_score[color] < g_score_swap_row) {
+    if (g_score[color] < g_score_swap_row || row0 > get_row_count() - 1 || row1 > get_row_count() - 1) {
         return 0;
     }
     
@@ -308,14 +307,14 @@ int swap_columns(const color_t color, const size_t col0, const size_t col1)
     int temp_for_swap;
     
     /* 실행 가능 여부 판단 -> row 가능 범위 조건 추가?*/
-    if (g_score[color] < g_score_swap_column) {
+    if (g_score[color] < g_score_swap_column || col0 > get_column_count() - 1 || col1 > get_column_count() - 1) {
         return 0;
     }
     
     cur_row = get_row_count();
     g_score[color] -= g_score_swap_column;
     
-    for (i = 0; i < cur_row; ++i){
+    for (i = 0; i < cur_row; ++i) {
         temp_for_swap = g_board[i][col0];
         g_board[i][col0] = g_board[i][col1];
         g_board[i][col1] = temp_for_swap;
@@ -330,7 +329,7 @@ int copy_row(const color_t color, const size_t src, const size_t dst)
     size_t cur_col;
     
     /* 실행 가능 여부 판단 -> row 가능 범위 조건 추가?*/
-    if (g_score[color] < g_score_copy_row) {
+    if (g_score[color] < g_score_copy_row || src > get_row_count() - 1 || dst > get_row_count() - 1) {
         return 0;
     }
     
@@ -349,7 +348,7 @@ int copy_column(const color_t color, const size_t src, const size_t dst)
     size_t i;
     size_t cur_row;
     
-    if (g_score[color] < g_score_copy_column) {
+    if (g_score[color] < g_score_copy_column || src > get_column_count() - 1 || dst > get_column_count() - 1) {
         return 0;
     }
     
@@ -371,8 +370,8 @@ void print_board(void)
     int i;
     int j;
     
-    for (i = 0; i < row; ++i){
-        for (j = 0; j < col; ++j){
+    for (i = 0; i < row; ++i) {
+        for (j = 0; j < col; ++j) {
             printf("%d/", g_board[i][j]);
         }
         printf("\n");
