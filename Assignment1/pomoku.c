@@ -71,20 +71,20 @@ int get_color(const size_t row, const size_t col)
 
 int is_placeable(const size_t row, const size_t col)
 {
-   int not_exist;
-   
-   if (row >= get_row_count() || col >= get_column_count()) {
-       not_exist = 0;
-       return not_exist;
-   }
-   
-   if (g_board[row][col] == BLANK_PLACE) {
-       not_exist = 1;
-   } else {
-       not_exist = 0;
-   }
-   
-   return not_exist;
+    int not_exist;
+
+    if (row >= get_row_count() || col >= get_column_count()) {
+        not_exist = 0;
+        return not_exist;
+    }
+
+    if (g_board[row][col] == BLANK_PLACE) {
+        not_exist = 1;
+    } else {
+        not_exist = 0;
+    }
+    
+        return not_exist;
 }
 
 int place_stone(const color_t color, const size_t row, const size_t col)
