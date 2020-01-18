@@ -26,7 +26,8 @@ void test_count_connected_stone(void);
 */
 
 int main(void)
-{
+{   
+    
     test_init_game();
     
     assert(is_placeable(0, 0) == TRUE);
@@ -254,9 +255,7 @@ void test_remove_row(void)
     place_stone(COLOR_BLACK, 2, 5);
 
     assert(get_score(COLOR_BLACK) == 3);
-    print_board();
     assert(remove_row(COLOR_BLACK, 2) == TRUE);
-    print_board();
     assert(get_score(COLOR_BLACK) == 0);
 
     for (i = 0; i < get_column_count(); i++) {

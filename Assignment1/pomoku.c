@@ -61,8 +61,13 @@ int get_score(const color_t color)
 }
 
 int get_color(const size_t row, const size_t col)
-{
-    return board[row][col];
+{   
+    if (row >= get_row_count() || col >= get_column_count() || row == (size_t) - 1 || col == (size_t) - 1) {
+        return -1;
+    }
+    else {
+        return board[row][col];
+    }
 }
 
 int is_placeable(const size_t row, const size_t col)
@@ -99,8 +104,10 @@ int get_new_score_by_placed_stone(const color_t color, const size_t row, const s
     int new_score = 0;
     
     new_score += get_new_score_by_vector(color, row, col, 1, 0);
-    new_score += get_new_score_by_vector(color, row, col, 1, 1);
     new_score += get_new_score_by_vector(color, row, col, 0, 1);
+    new_score += get_new_score_by_vector(color, row, col, 1, 1);
+    new_score += get_new_score_by_vector(color, row, col, -1, 1);
+    
     
     return new_score;
 }
@@ -285,7 +292,7 @@ int swap_rows(const color_t color, const size_t row0, const size_t row1)
     cur_col = get_column_count();
     score[color] -= SCORE_SWAP_ROW;
     
-    for (i = 0; i < cur_col; ++i){
+    for (i = 0; i < cur_col; ++i) {
         temp_for_swap = board[row0][i];
         board[row0][i] = board[row1][i];
         board[row1][i] = temp_for_swap;
