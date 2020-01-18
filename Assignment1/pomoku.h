@@ -1,6 +1,5 @@
 #ifndef POMOKU_H
 #define POMOKU_H
-#include <windows.h>
 
 /*
 #define TRUE (1)

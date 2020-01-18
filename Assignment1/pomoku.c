@@ -84,7 +84,7 @@ int is_placeable(const size_t row, const size_t col)
         not_exist = 0;
     }
     
-        return not_exist;
+    return not_exist;
 }
 
 int place_stone(const color_t color, const size_t row, const size_t col)
