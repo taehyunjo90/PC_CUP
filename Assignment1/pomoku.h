@@ -5,7 +5,8 @@
 #define FALSE (0)
 
 typedef enum color {
-    DELETE_THIS_VALUE
+    COLOR_BLACK,
+    COLOR_WHITE
 } color_t;
 
 void init_game(void);
@@ -38,5 +39,15 @@ int swap_columns(const color_t color, const size_t col0, const size_t col1);
 int copy_row(const color_t color, const size_t src, const size_t dst);
 
 int copy_column(const color_t color, const size_t src, const size_t dst);
+
+/* my sub moudles */
+int get_new_score_by_placed_stone(const color_t color, const size_t row, const size_t col);
+
+int get_new_score_by_vector(const color_t color, const size_t row, const size_t col, const int x, const int y);
+
+int get_num_connected_stone(const color_t color, const size_t row, const size_t col, const int x, const int y, int num_connected_stone);
+
+/* for debug - my code - have to delete */
+void print_board(void);
 
 #endif /* POMOKU_H */
