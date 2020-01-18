@@ -76,6 +76,8 @@ void test_init_game(void)
 void test_insert_row(void)
 {
     size_t i;
+    
+    test_init_game();
 
     test_init_game();
     
@@ -87,8 +89,7 @@ void test_insert_row(void)
     place_stone(COLOR_BLACK, 2, 5);
     
     assert(get_score(COLOR_BLACK) == 3);
-
-    assert(insert_row(COLOR_BLACK, 2) == TRUE);
+    assert(insert_row(COLOR_BLACK, 0) == TRUE);
     assert(get_score(COLOR_BLACK) == 0);
     assert(get_row_count() == 16);
     
@@ -253,9 +254,9 @@ void test_remove_row(void)
     place_stone(COLOR_BLACK, 2, 3);
     place_stone(COLOR_BLACK, 2, 4);
     place_stone(COLOR_BLACK, 2, 5);
-
+    
     assert(get_score(COLOR_BLACK) == 3);
-    assert(remove_row(COLOR_BLACK, 2) == TRUE);
+    assert(remove_row(COLOR_BLACK, 0) == TRUE);
     assert(get_score(COLOR_BLACK) == 0);
 
     for (i = 0; i < get_column_count(); i++) {

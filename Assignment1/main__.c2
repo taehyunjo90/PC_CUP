@@ -42,6 +42,7 @@ void score_test(void);
 
 int main(void)
 {
+    printf("test start!\n");
     test_init_game();
 
     assert(is_placeable(0, 0) == TRUE);
@@ -55,19 +56,21 @@ int main(void)
     assert(place_stone(COLOR_BLACK, 0, 0) == FALSE);
 
     test_horizontal_chain();
-    test_combined_chains();
+    test_combined_chains();    
 
     test_swap_row();
     test_insert_row();
     test_remove_row();
     test_copy_row();
     test_copy_col();
-
+    
     score_test();
-
+    
     test_place_stone_combined();
     test_place_stone_combined2();
-
+    
+    
+    printf("game start!");
     game_start();
 
     return 0;
@@ -613,7 +616,7 @@ void test_place_stone_combined(void)
     unsigned int j;
     const unsigned int MAX = 100u;
     int score = 0;
-
+    
     init_game();
     for (i = 0; i <= MAX; i++) {
         for (j = 0; j <= MAX; j++) {
@@ -630,6 +633,7 @@ void test_place_stone_combined(void)
             }
         }
     }
+    
 
     init_game();
     for (i = 0; i <= MAX; i++) {
@@ -647,6 +651,7 @@ void test_place_stone_combined(void)
             }
         }
     }
+    
 
     init_game();
     for (i = 0; i < 15; i++) {
@@ -657,6 +662,7 @@ void test_place_stone_combined(void)
     }
     assert(get_score(COLOR_BLACK) == score);
     assert(insert_row(COLOR_BLACK, 21) == FALSE);
+    printf("herer!!!!");
     assert(insert_row(COLOR_BLACK, 20) == FALSE);
     assert(insert_row(COLOR_BLACK, 19) == FALSE);
     assert(insert_row(COLOR_BLACK, 18) == FALSE);
@@ -686,6 +692,7 @@ void test_place_stone_combined(void)
             }
         }
     }
+       
 
     init_game();
     for (i = 0; i < 15; i++) {
