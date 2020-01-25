@@ -32,14 +32,14 @@ const char* get_longest_safe_zone_or_null(const char* const cab_start_location, 
         
         is_current_location_safe = is_safe_area(current_location_cluster_count);
         
-        if (is_before_location_safe == 0 && is_current_location_safe == 1){
+        if (is_before_location_safe == 0 && is_current_location_safe == 1) {
             current_safe_area_start_location = current_check_location;
             current_safe_area_length = 1;
         } else if (is_before_location_safe == 1 && is_current_location_safe == 1) {
             current_safe_area_length += 1;
         }
         
-        if (current_safe_area_length > max_safe_area_length) {
+        if (current_safe_area_length >= max_safe_area_length) {
             max_safe_area_start_location = current_safe_area_start_location;
             max_safe_area_length = current_safe_area_length;
         }
@@ -104,5 +104,5 @@ int get_travel_time(const char* const cab_start_location, const size_t cab_lengt
     }
     
     /* printf("travel time : %f", travel_time); */
-    return (int) (travel_time + 0.5);
+    return (int)(travel_time + 0.5);
 }
