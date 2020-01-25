@@ -103,5 +103,5 @@ int get_travel_time(const char* const cab_start_location, const size_t cab_lengt
     }
     
     /* printf("travel time : %f", travel_time); */
-    return (int)((travel_time + 5)/10);
+    return (int)((travel_time + 5) / 10);
 }
