@@ -16,7 +16,7 @@ void reverse(char* str)
 
 int index_of(const char* str, const char* word)
 {
-    /* size_t len_str = my_strlen(str);
+    size_t len_str = my_strlen(str);
     size_t len_word = my_strlen(word);
     
     size_t i;
@@ -45,7 +45,7 @@ int index_of(const char* str, const char* word)
         if (is_match == TRUE) {
             return i;
         }
-    } */
+    }
     return -1;
 }
 
