@@ -16,11 +16,12 @@ void reverse(char* str)
 
 int index_of(const char* str, const char* word)
 {
-    size_t len_str = my_strlen(str);
-    size_t len_word = my_strlen(word);
+    size_t len_str;
+    size_t len_word;
     
     size_t i;
     size_t j;
+    size_t total_loop;
     
     const char* start_ptr;
     const char* str_detail_ptr;
@@ -28,7 +29,11 @@ int index_of(const char* str, const char* word)
     
     int is_match;
     
-    for (i = 0; i < len_str - len_word + 1 ; i++) {
+    len_str = my_strlen(str);
+    len_word = my_strlen(word);
+    
+    total_loop = len_str - len_word + 1;
+    for (i = 0; i < total_loop; i++) {
         start_ptr = str + i;
         is_match = TRUE;
         for (j = 0; j < len_word; j++) {
@@ -64,14 +69,16 @@ void reverse_by_words(char* str)
             loop_ptr ++;
         }
         reverse_n(word_start_ptr, word_size);
+        if (*loop_ptr == '\0') {
+            break;
+        }
         loop_ptr ++;
     }
 }
 
 char* tokenize(char* str, const char* delims)
 {
-    return str;
-    /* int is_toknized = FALSE;
+    int is_toknized = FALSE;
     int is_pre_toknized = FALSE;
     char* start_ptr;
     
@@ -93,7 +100,7 @@ char* tokenize(char* str, const char* delims)
     }
     s_is_once_started = TRUE;
     
-    return start_ptr; */
+    return start_ptr;
 }
 
 int if_char_is_in_delims_then_null_char(char* char_ptr, const char* delims)
@@ -123,8 +130,7 @@ int if_char_is_delim_then_null_char(char* char_ptr, const char* delim)
 
 char* reverse_tokenize(char* str, const char* delims)
 {
-    return str;
-    /* int is_toknized = FALSE;
+    int is_toknized = FALSE;
     int is_pre_toknized = FALSE;
     char* start_ptr;
     int count = 0;
@@ -156,7 +162,7 @@ char* reverse_tokenize(char* str, const char* delims)
     } else {
         reverse_n(start_ptr, count - 1);
     }
-    return start_ptr; */
+    return start_ptr;
 }
 
 void reverse_n(char* str, size_t len_str)
@@ -183,9 +189,14 @@ void reverse_n(char* str, size_t len_str)
 }
 
 size_t my_strlen(const char* str)
-{
+{   
     size_t i = 0;
     const char* cur_ptr = str;
+    
+    if (str == NULL) {
+        return 0;
+    }
+    
     while (*cur_ptr != '\0') {
         cur_ptr ++;
         i++;
