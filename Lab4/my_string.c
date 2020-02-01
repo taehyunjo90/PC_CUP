@@ -51,7 +51,7 @@ int index_of(const char* str, const char* word)
 
 void reverse_by_words(char* str)
 {
-    /* size_t word_size;
+    size_t word_size;
     char* word_start_ptr;
     char* loop_ptr;
         
@@ -65,7 +65,7 @@ void reverse_by_words(char* str)
         }
         reverse_n(word_start_ptr, word_size);
         loop_ptr ++;
-    } */
+    }
 }
 
 char* tokenize(char* str, const char* delims)
@@ -167,15 +167,18 @@ void reverse_n(char* str, size_t len_str)
     char* start_ptr;
     char* end_ptr;
     
-    start_ptr = str;
-    end_ptr = str + len_str - 1;
-    
-    for (i = 0; i < len_str / 2; i++) {
-        tmp = *end_ptr;
-        *end_ptr = *start_ptr;
-        *start_ptr = tmp;
-        start_ptr++;
-        end_ptr--;
+    if (len_str >= 2) {
+        start_ptr = str;
+        end_ptr = str + len_str - 1;
+        
+        
+        for (i = 0; i < len_str / 2; i++) {
+            tmp = *end_ptr;
+            *end_ptr = *start_ptr;
+            *start_ptr = tmp;
+            start_ptr++;
+            end_ptr--;
+        }
     }
 }
 
