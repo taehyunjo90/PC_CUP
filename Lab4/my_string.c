@@ -76,7 +76,7 @@ char* tokenize(char* str, const char* delims)
     
     if (str == NULL && is_once_started == FALSE) {
         return NULL;
-    } else if (str != NULL && is_once_started == FALSE) {
+    } else if (str != NULL) {
         ptr = str;
     }
     
@@ -129,7 +129,7 @@ char* reverse_tokenize(char* str, const char* delims)
     
     if (str == NULL && is_once_started == FALSE) {
         return NULL;
-    } else if (str != NULL && is_once_started == FALSE) {
+    } else if (str != NULL) {
         ptr = str;
     }
     
@@ -147,8 +147,15 @@ char* reverse_tokenize(char* str, const char* delims)
         ptr ++;
         is_pre_toknized = is_toknized;
     }
-    is_once_started = TRUE;    
-    reverse_n(start_ptr, count - 1);
+    is_once_started = TRUE;
+    
+    if (*ptr == '\0') {
+        reverse_n(start_ptr, count);
+    } else {
+        reverse_n(start_ptr, count - 1);
+    }
+    
+    
     
     return start_ptr;
 }
