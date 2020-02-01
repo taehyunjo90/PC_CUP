@@ -70,7 +70,8 @@ void reverse_by_words(char* str)
 
 char* tokenize(char* str, const char* delims)
 {
-    int is_toknized = FALSE;
+    return str;
+    /* int is_toknized = FALSE;
     int is_pre_toknized = FALSE;
     char* start_ptr;
     
@@ -92,7 +93,7 @@ char* tokenize(char* str, const char* delims)
     }
     s_is_once_started = TRUE;
     
-    return start_ptr;
+    return start_ptr; */
 }
 
 int if_char_is_in_delims_then_null_char(char* char_ptr, const char* delims)
@@ -122,7 +123,8 @@ int if_char_is_delim_then_null_char(char* char_ptr, const char* delim)
 
 char* reverse_tokenize(char* str, const char* delims)
 {
-    int is_toknized = FALSE;
+    return str;
+    /* int is_toknized = FALSE;
     int is_pre_toknized = FALSE;
     char* start_ptr;
     int count = 0;
@@ -154,10 +156,7 @@ char* reverse_tokenize(char* str, const char* delims)
     } else {
         reverse_n(start_ptr, count - 1);
     }
-    
-    
-    
-    return start_ptr;
+    return start_ptr; */
 }
 
 void reverse_n(char* str, size_t len_str)
