@@ -74,23 +74,23 @@ char* tokenize(char* str, const char* delims)
     int is_pre_toknized = FALSE;
     char* start_ptr;
     
-    if (str == NULL && is_once_started == FALSE) {
+    if (str == NULL && s_is_once_started == FALSE) {
         return NULL;
     } else if (str != NULL) {
-        ptr = str;
+        s_ptr = str;
     }
     
-    start_ptr = ptr;
+    start_ptr = s_ptr;
     
-    while (*ptr != '\0') {
-        is_toknized = if_char_is_in_delims_then_null_char(ptr, delims);
+    while (*s_ptr != '\0') {
+        is_toknized = if_char_is_in_delims_then_null_char(s_ptr, delims);
         if (is_pre_toknized == TRUE && is_toknized == FALSE) {
             break;
         }
-        ptr ++;
+        s_ptr ++;
         is_pre_toknized = is_toknized;
     }
-    is_once_started = TRUE;
+    s_is_once_started = TRUE;
     
     return start_ptr;
 }
@@ -127,16 +127,16 @@ char* reverse_tokenize(char* str, const char* delims)
     char* start_ptr;
     int count = 0;
     
-    if (str == NULL && is_once_started == FALSE) {
+    if (str == NULL && s_is_once_started == FALSE) {
         return NULL;
     } else if (str != NULL) {
-        ptr = str;
+        s_ptr = str;
     }
     
-    start_ptr = ptr;
+    start_ptr = s_ptr;
     
-    while (*ptr != '\0') {
-        is_toknized = if_char_is_in_delims_then_null_char(ptr, delims);
+    while (*s_ptr != '\0') {
+        is_toknized = if_char_is_in_delims_then_null_char(s_ptr, delims);
         if (is_toknized == FALSE) {
             count ++;
         }
@@ -144,12 +144,12 @@ char* reverse_tokenize(char* str, const char* delims)
         if (is_pre_toknized == TRUE && is_toknized == FALSE) {
             break;
         }
-        ptr ++;
+        s_ptr ++;
         is_pre_toknized = is_toknized;
     }
-    is_once_started = TRUE;
+    s_is_once_started = TRUE;
     
-    if (*ptr == '\0') {
+    if (*s_ptr == '\0') {
         reverse_n(start_ptr, count);
     } else {
         reverse_n(start_ptr, count - 1);
