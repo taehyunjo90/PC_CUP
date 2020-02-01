@@ -4,8 +4,8 @@
 #define TRUE  1
 #define FALSE 0
 
-static int is_once_started = FALSE;
-static char* ptr;
+static int s_is_once_started = FALSE;
+static char* s_ptr;
 
 void reverse(char* str)
 {
