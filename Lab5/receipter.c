@@ -49,6 +49,12 @@ int print_receipt(const char* filename, time_t timestamp)
     FILE* file_stream;
         
     if (s_food_count == 0 || filename == NULL) {
+        s_food_count = 0;
+        s_sum_of_food_prices = 0.0;
+        s_tip = 0.0;
+        s_tax = 0.0;
+        s_len_total_print = 0;
+        s_thanks_message = NULL;        
         return FALSE;
     }
     

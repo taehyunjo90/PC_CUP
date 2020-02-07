@@ -7,12 +7,12 @@ int main(void)
 {
     time_t time = 1569472997;
     int i;
-    char filename[50];
+    char* filename;
     
     
     
     for (i = 0 ; i < 50 ; i ++ ) {
-        sprintf(filename, "%02d.txt", i);
+        filename = NULL;
         
         assert(TRUE == add_item("Magarita", 12.45));
 
@@ -20,7 +20,7 @@ int main(void)
 
         add_message("Thanks for dining with us!");
 
-        assert(TRUE == print_receipt(filename, time));
+        assert(FALSE == print_receipt(filename, time));
     }
 
     printf("Done!\n");
