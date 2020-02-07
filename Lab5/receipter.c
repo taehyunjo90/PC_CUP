@@ -6,7 +6,7 @@
 #define MAX_MENU 10
 #define PRINT_MAX_COL_LENGTH (50)
 #define PRINT_MAX_ROW_LENGTH (50)
-#define TOTAL_PRINT_LENGTH (PRINT_MAX_COL_LENGTH * PRINT_MAX_ROW_LENGTH)
+#define TOTAL_PRINT_LENGTH (4096)
 
 static int s_receipt_count = 0;
 
@@ -25,7 +25,7 @@ static int s_len_total_print = 0;
 
 int add_item(const char* name, double price)
 {   
-    if (s_food_count == 10) {
+    if (s_food_count >= 10) {
         return FALSE;
     }
     s_food_names[s_food_count] = name;
@@ -48,7 +48,7 @@ int print_receipt(const char* filename, time_t timestamp)
 {
     FILE* file_stream;
         
-    if (s_food_count == 0) {
+    if (s_food_count == 0 || filename == NULL) {
         return FALSE;
     }
     
@@ -84,6 +84,7 @@ int print_receipt(const char* filename, time_t timestamp)
     s_len_total_print = 0;
     s_thanks_message = NULL;
     
+    
     return TRUE;
 }
 
@@ -102,7 +103,7 @@ void append_divider(void)
 
 void append_time(time_t timestamp)
 {
-    char time_string[PRINT_MAX_COL_LENGTH];
+    char time_string[PRINT_MAX_COL_LENGTH + 10];
     struct tm *ptm = gmtime(&timestamp);
     sprintf(time_string, "%04d-%02d-%02d %02d:%02d:%02d", ptm->tm_year + 1900, ptm->tm_mon, ptm->tm_mday, ptm->tm_hour, ptm->tm_min, ptm->tm_sec);
     _append_str_to_total_print(time_string);
@@ -134,8 +135,8 @@ void append_ordered_menu(void)
 
 void _append_food(int order_num)
 {
-    char food_name[PRINT_MAX_COL_LENGTH];
-    char string_food_name[PRINT_MAX_COL_LENGTH];
+    char food_name[PRINT_MAX_COL_LENGTH + 10];
+    char string_food_name[PRINT_MAX_COL_LENGTH + 10];
     strncpy(food_name, s_food_names[order_num], 25);
     food_name[25] = '\0';
     sprintf(string_food_name, "%33s", food_name);
@@ -144,7 +145,7 @@ void _append_food(int order_num)
 
 void _append_price(int order_num)
 {
-    char string_price[PRINT_MAX_COL_LENGTH];
+    char string_price[PRINT_MAX_COL_LENGTH + 10];
     sprintf(string_price, "%17.2f\n", s_food_prices[order_num]);
     _append_str_to_total_print(string_price);
     
@@ -240,7 +241,7 @@ void append_double_divider(void)
 
 void append_tax_info(void)
 {
-    char tax_info_line[PRINT_MAX_COL_LENGTH + 1];
+    char tax_info_line[PRINT_MAX_COL_LENGTH + 10];
     char tax_info[] = "Tax#-51234";
     
     sprintf(tax_info_line, "%50s", tax_info);
