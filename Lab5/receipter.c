@@ -217,7 +217,6 @@ void append_thanks_message(void)
     
     len_thanks_msg = strlen(s_thanks_message);
     
-    printf("%s", s_thanks_message);
     strncpy(thanks_msg_buffer, s_thanks_message, 50);
     thanks_msg_buffer[50] = '\0';
     _append_str_to_total_print(thanks_msg_buffer);

@@ -31,8 +31,26 @@ int main(void)
     assert(TRUE == add_item("Pepsi", 5.99));
 
     assert(TRUE == print_receipt("receipt1.txt", time));
+    
 
-    assert(FALSE == print_receipt("receipt2.txt", time));
+    assert(TRUE == add_item("Raw sea cucumber", 34.26));
+    assert(TRUE == add_item("Pan fried Mackerel", 16.58));
+    assert(TRUE == add_item("Pepsi", 5.99));
+    assert(TRUE == add_item("Raw sea cucumber", 34.26));
+    assert(TRUE == add_item("Pan fried Mackerel", 16.58));
+    assert(TRUE == add_item("Pepsi", 5.99));
+    assert(TRUE == add_item("Raw sea cucumber", 34.26));
+    assert(TRUE == add_item("Pan fried Mackerel", 16.58));
+    assert(TRUE == add_item("Pepsi", 5.99));
+    assert(TRUE == add_item("Raw sea cucumber", 34.26));
+    assert(FALSE == add_item("Pan fried Mackerel", 16.58));
+    assert(FALSE == add_item("Pepsi", 5.99));
+    
+    add_tip(992.22);
+
+    add_message("Thanks for dining with us!alkdfjalkdjfalkdfjlkadfjlkadfkadjflkadf");
+
+    assert(TRUE == print_receipt("receipt2.txt", time));
     printf("Done!\n");
 
 	return 0;
