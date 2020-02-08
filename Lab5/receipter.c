@@ -4,8 +4,8 @@
 #include <string.h>
 
 #define MAX_MENU 10
-#define PRINT_MAX_COL_LENGTH (50)
-#define PRINT_MAX_ROW_LENGTH (50)
+#define PRINT_MAX_COL_LENGTH (100)
+#define PRINT_MAX_ROW_LENGTH (100)
 #define TOTAL_PRINT_LENGTH (4096)
 
 static int s_receipt_count = 0;
