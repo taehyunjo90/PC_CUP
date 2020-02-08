@@ -10,14 +10,14 @@
 
 static int s_receipt_count = 0;
 
-static const char* s_food_names[MAX_MENU];
+/* static const char* s_food_names[MAX_MENU]; */
 static double s_food_prices[MAX_MENU];
 
 static char s_food_names_[MAX_MENU][PRINT_MAX_COL_LENGTH];
  
 static int s_food_count = 0;
 
-static const char* s_thanks_message = NULL;
+/* static const char* s_thanks_message = NULL; */
 static char s_thanks_message_[PRINT_MAX_COL_LENGTH] = {'\0', };
 
 static double s_sum_of_food_prices = 0.0;
@@ -65,7 +65,7 @@ int print_receipt(const char* filename, time_t timestamp)
         s_tip = 0.0;
         s_tax = 0.0;
         s_len_total_print = 0;
-        s_thanks_message = NULL;        
+        /* s_thanks_message = NULL;         */
         s_thanks_message_[0] = '\0';
         return FALSE;
     }
@@ -100,7 +100,7 @@ int print_receipt(const char* filename, time_t timestamp)
     s_tip = 0.0;
     s_tax = 0.0;
     s_len_total_print = 0;
-    s_thanks_message = NULL;
+    /* s_thanks_message = NULL; */
     s_thanks_message_[0] = '\0';
     
     
@@ -290,26 +290,4 @@ int print_total_to_file_stream(FILE* file_stream, int total_print_length)
 {
     fwrite(s_total_print, 1, total_print_length, file_stream);
     return 1;
-}
-
-/* my test code */
-
-void print_foods(void)
-{
-    int i;
-    
-    for (i = 0; i < s_food_count ; i++) {
-        printf("food_name : %s, food_price : %f\n", s_food_names[i], s_food_prices[i]);
-    }
-}
-
-void print_tip(void)
-{
-    printf("tip is : %f\n", s_tip);
-}
-
-
-void print_message(void)
-{
-    printf("thanks_message : %s\n", s_thanks_message);
 }

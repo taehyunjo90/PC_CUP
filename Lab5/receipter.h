@@ -37,9 +37,5 @@ void _append_str_to_total_print_with_category_and_price(char* category, double p
 void _append_str_to_total_print(char* target_str);
 int print_total_to_file_stream(FILE* file_stream, int total_print_length);
 
-/* my test code */
-void print_foods(void);
-void print_tip(void);
-void print_message(void);
 
 #endif /* RECEIPTER_H */
