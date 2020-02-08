@@ -31,7 +31,7 @@ int add_item(const char* name, double price)
     if (s_food_count >= 10) {
         return FALSE;
     }
-    s_food_names[s_food_count] = name;
+    /* s_food_names[s_food_count] = name; */
     s_food_prices[s_food_count] = price;
     
     /* !!! */
@@ -76,11 +76,11 @@ int print_receipt(const char* filename, time_t timestamp)
     append_divider();
     append_ordered_menu();
     append_new_line();
-/*     append_sub_total();
+    append_sub_total();
     append_tip();
     append_tax();
     append_total();
-    append_new_line();
+/*     append_new_line();
     append_thanks_message();
     append_double_divider();
     append_tax_info(); */
