@@ -7,20 +7,35 @@ int main(void)
 {
     time_t time = 1569472997;
     int i;
+    char test_file_name[] = "receipt.txt"; 
     char* filename;
     
     
     
-    for (i = 0 ; i < 50 ; i ++ ) {
-        filename = NULL;
-        
+    for (i = 0 ; i < 9999 ; i ++ ) {        
+        assert(TRUE == add_item("", 12.45));
+
+        add_tip(20.55);
+
+        add_message("Thanks for dining with ussldafkadfjlkadjflkajdfkladjfklcajdfklajdfklcajdfkladjfckdlafjalkdfck!");
+
+        print_receipt(test_file_name, time);
+    }
+    
+    for (i = 0 ; i < 9999 ; i ++ ) {        
         assert(TRUE == add_item("Magarita", 12.45));
 
         add_tip(20.55);
 
-        add_message("Thanks for dining with us!");
+        print_receipt("receipt1.txt", time);
+    }
+    
+    for (i = 0 ; i < 9999 ; i ++ ) {        
+        assert(TRUE == add_item("Magarita", 12.45));
 
-        assert(FALSE == print_receipt(filename, time));
+        add_message("Thanks for dining with ussldafkadfjlkadjflkajdfkladjfklcajdfklajdfklcajdfkladjfckdlafjalkdfck!");
+
+        print_receipt("receipt2.txt", time);
     }
 
     printf("Done!\n");

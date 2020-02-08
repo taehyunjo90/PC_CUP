@@ -60,7 +60,7 @@ int print_receipt(const char* filename, time_t timestamp)
     
     s_total_print[0] = '\0';
     
-    append_company_name();
+    /* append_company_name();
     append_divider();
     append_time(timestamp);
     append_blank(26);
@@ -75,7 +75,7 @@ int print_receipt(const char* filename, time_t timestamp)
     append_new_line();
     append_thanks_message();
     append_double_divider();
-    append_tax_info();
+    append_tax_info(); */
     
     file_stream = fopen(filename, "wb");
     print_total_to_file_stream(file_stream, s_len_total_print);
