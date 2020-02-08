@@ -119,7 +119,7 @@ void append_time(time_t timestamp)
 {
     char time_string[PRINT_MAX_COL_LENGTH + 10];
     struct tm *ptm = gmtime(&timestamp);
-    sprintf(time_string, "%04d-%02d-%02d %02d:%02d:%02d", ptm->tm_year + 1900, ptm->tm_mon, ptm->tm_mday, ptm->tm_hour, ptm->tm_min, ptm->tm_sec);
+    sprintf(time_string, "%04d-%02d-%02d %02d:%02d:%02d", ptm->tm_year + 1900, ptm->tm_mon + 1, ptm->tm_mday, ptm->tm_hour, ptm->tm_min, ptm->tm_sec);
     _append_str_to_total_print(time_string);
 }
 
