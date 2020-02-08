@@ -12,7 +12,7 @@ int main(void)
     
     
     
-    for (i = 0 ; i < 9999 ; i ++ ) {        
+    for (i = 0 ; i < 10 ; i ++ ) {        
         assert(TRUE == add_item("", 12.45));
 
         add_tip(20.55);
@@ -22,7 +22,7 @@ int main(void)
         print_receipt(test_file_name, time);
     }
     
-    for (i = 0 ; i < 9999 ; i ++ ) {        
+    for (i = 0 ; i < 10 ; i ++ ) {        
         assert(TRUE == add_item("Magarita", 12.45));
 
         add_tip(20.55);
@@ -30,7 +30,7 @@ int main(void)
         print_receipt("receipt1.txt", time);
     }
     
-    for (i = 0 ; i < 9999 ; i ++ ) {        
+    for (i = 0 ; i < 10 ; i ++ ) {        
         assert(TRUE == add_item("Magarita", 12.45));
 
         add_message("Thanks for dining with ussldafkadfjlkadjflkajdfkladjfklcajdfklajdfklcajdfkladjfckdlafjalkdfck!");

@@ -12,6 +12,9 @@ static int s_receipt_count = 0;
 
 static const char* s_food_names[MAX_MENU];
 static double s_food_prices[MAX_MENU];
+
+static char s_food_names_[MAX_MENU][PRINT_MAX_COL_LENGTH];
+ 
 static int s_food_count = 0;
 
 static const char* s_thanks_message = NULL;
@@ -30,6 +33,11 @@ int add_item(const char* name, double price)
     }
     s_food_names[s_food_count] = name;
     s_food_prices[s_food_count] = price;
+    
+    /* !!! */
+    strncpy(s_food_names_[s_food_count], name, 25);
+    s_food_names_[s_food_count][25] = '\0';
+    
     s_food_count ++;
     return TRUE;
 }
@@ -60,7 +68,7 @@ int print_receipt(const char* filename, time_t timestamp)
     
     s_total_print[0] = '\0';
     
-    /* append_company_name();
+    append_company_name();
     append_divider();
     append_time(timestamp);
     append_blank(26);
@@ -75,7 +83,7 @@ int print_receipt(const char* filename, time_t timestamp)
     append_new_line();
     append_thanks_message();
     append_double_divider();
-    append_tax_info(); */
+    append_tax_info();
     
     file_stream = fopen(filename, "wb");
     print_total_to_file_stream(file_stream, s_len_total_print);
@@ -141,9 +149,17 @@ void append_ordered_menu(void)
 
 void _append_food(int order_num)
 {
-    char food_name[PRINT_MAX_COL_LENGTH + 10];
+    /* char food_name[PRINT_MAX_COL_LENGTH + 10];
     char string_food_name[PRINT_MAX_COL_LENGTH + 10];
     strncpy(food_name, s_food_names[order_num], 25);
+    food_name[25] = '\0';
+    sprintf(string_food_name, "%33s", food_name);
+    _append_str_to_total_print(string_food_name); */
+    
+    /* !!! */
+    char food_name[PRINT_MAX_COL_LENGTH + 10];
+    char string_food_name[PRINT_MAX_COL_LENGTH + 10];
+    strncpy(food_name, s_food_names_[order_num], 25);
     food_name[25] = '\0';
     sprintf(string_food_name, "%33s", food_name);
     _append_str_to_total_print(string_food_name);
