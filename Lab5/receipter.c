@@ -76,14 +76,14 @@ int print_receipt(const char* filename, time_t timestamp)
     append_divider();
     append_ordered_menu();
     append_new_line();
-    append_sub_total();
+/*     append_sub_total();
     append_tip();
     append_tax();
     append_total();
     append_new_line();
     append_thanks_message();
     append_double_divider();
-    append_tax_info();
+    append_tax_info(); */
     
     file_stream = fopen(filename, "wb");
     print_total_to_file_stream(file_stream, s_len_total_print);

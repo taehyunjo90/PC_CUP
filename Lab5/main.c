@@ -32,6 +32,10 @@ int main(void)
     
     for (i = 0 ; i < 10 ; i ++ ) {        
         assert(TRUE == add_item("Magarita", 12.45));
+        assert(TRUE == add_item("Magarita", 12.45));
+        assert(TRUE == add_item("Magarita", 12.45));
+        assert(TRUE == add_item("Magarita", 12.45));
+        
 
         add_message("Thanks for dining with ussldafkadfjlkadjflkajdfkladjfklcajdfklajdfklcajdfkladjfckdlafjalkdfck!");
 
