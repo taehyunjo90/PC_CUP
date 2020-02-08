@@ -1,6 +1,6 @@
 Charles' Seafood
 --------------------------------------------------
-2019-08-26 04:43:17                          00029
+2019-09-26 04:43:17                          00029
 --------------------------------------------------
                          Magarita            12.45
                          Magarita            12.45
@@ -11,7 +11,5 @@ Charles' Seafood
                               Tax             2.49
                             Total            52.29
 
-Thanks for dining with ussldafkadfjlkadjflkajdfkla
-djfklcajdfklajdfklcajdfkl
 ==================================================
                                         Tax#-51234

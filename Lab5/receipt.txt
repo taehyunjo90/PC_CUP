@@ -1,6 +1,6 @@
 Charles' Seafood
 --------------------------------------------------
-2019-08-26 04:43:17                          00009
+2019-09-26 04:43:17                          00009
 --------------------------------------------------
                                              12.45
 
@@ -9,7 +9,5 @@ Charles' Seafood
                               Tax             0.62
                             Total            33.62
 
-Thanks for dining with ussldafkadfjlkadjflkajdfkla
-djfklcajdfklajdfklcajdfkl
 ==================================================
                                         Tax#-51234

@@ -18,6 +18,7 @@ static char s_food_names_[MAX_MENU][PRINT_MAX_COL_LENGTH];
 static int s_food_count = 0;
 
 static const char* s_thanks_message = NULL;
+static char s_thanks_message_[PRINT_MAX_COL_LENGTH] = {'\0', };
 
 static double s_sum_of_food_prices = 0.0;
 static double s_tip = 0.0;
@@ -49,7 +50,9 @@ void add_tip(double tip)
 
 void add_message(const char* message)
 {
-    s_thanks_message = message;
+    /* s_thanks_message = message; */
+    strncpy(s_thanks_message_, message, 75);
+    s_thanks_message_[75] = '\0';
 }
 
 int print_receipt(const char* filename, time_t timestamp)
@@ -238,15 +241,15 @@ void append_thanks_message(void)
         return;
     }
     
-    len_thanks_msg = strlen(s_thanks_message);
+    len_thanks_msg = strlen(s_thanks_message_);
     
-    strncpy(thanks_msg_buffer, s_thanks_message, 50);
+    strncpy(thanks_msg_buffer, s_thanks_message_, 50);
     thanks_msg_buffer[50] = '\0';
     _append_str_to_total_print(thanks_msg_buffer);
     append_new_line();
     
     if (len_thanks_msg > 50) {
-        next_line_ptr = s_thanks_message + 50;
+        next_line_ptr = s_thanks_message_ + 50;
         strncpy(thanks_msg_buffer, next_line_ptr, 25);
         thanks_msg_buffer[25] = '\0';
         _append_str_to_total_print(thanks_msg_buffer);
