@@ -77,8 +77,8 @@ int print_receipt(const char* filename, time_t timestamp)
     append_ordered_menu();
     append_new_line();
     append_sub_total();
-    append_tip();
-/*     append_tax();
+    /* append_tip();
+    append_tax();
     append_total();
     append_new_line();
     append_thanks_message();
