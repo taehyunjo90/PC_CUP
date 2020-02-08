@@ -237,7 +237,7 @@ void append_thanks_message(void)
     char thanks_msg_buffer[PRINT_MAX_COL_LENGTH + 10];
     const char* next_line_ptr;
     
-    if (s_thanks_message == NULL) {
+    if (strlen(s_thanks_message_) == 0) {
         return;
     }
     
