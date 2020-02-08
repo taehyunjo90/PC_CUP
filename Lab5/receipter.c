@@ -3,7 +3,7 @@
 #include <time.h>
 #include <string.h>
 
-#define MAX_MENU 10
+#define MAX_MENU (10)
 #define PRINT_MAX_COL_LENGTH (100)
 #define PRINT_MAX_ROW_LENGTH (100)
 #define TOTAL_PRINT_LENGTH (4096)
@@ -66,6 +66,7 @@ int print_receipt(const char* filename, time_t timestamp)
         s_tax = 0.0;
         s_len_total_print = 0;
         s_thanks_message = NULL;        
+        s_thanks_message_[0] = '\0';
         return FALSE;
     }
     
@@ -100,6 +101,7 @@ int print_receipt(const char* filename, time_t timestamp)
     s_tax = 0.0;
     s_len_total_print = 0;
     s_thanks_message = NULL;
+    s_thanks_message_[0] = '\0';
     
     
     return TRUE;
@@ -121,7 +123,9 @@ void append_divider(void)
 void append_time(time_t timestamp)
 {
     char time_string[PRINT_MAX_COL_LENGTH + 10];
-    struct tm *ptm = gmtime(&timestamp);
+    /* struct tm *ptm = gmtime(&timestamp); */
+    struct tm *ptm;
+    ptm = gmtime(&timestamp);
     sprintf(time_string, "%04d-%02d-%02d %02d:%02d:%02d", ptm->tm_year + 1900, ptm->tm_mon + 1, ptm->tm_mday, ptm->tm_hour, ptm->tm_min, ptm->tm_sec);
     _append_str_to_total_print(time_string);
 }
