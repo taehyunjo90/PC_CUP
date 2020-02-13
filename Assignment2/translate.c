@@ -54,10 +54,10 @@ int translate(int argc, const char** argv)
     map_one[0] = '\0';
     map_two[0] = '\0';
     
-    /* printf("SHOW SETS -> set1 : %s, set2 : %s\n", set_one, set_two); */
+    printf("SHOW SETS -> set1 : %s, set2 : %s\n", set_one, set_two);
     
     set_maps(set_one, set_two, map_one, map_two);
-    /* printf("SHOW MAPS -> map1 : %s, map2 : %s\n", map_one, map_two); */
+    printf("SHOW MAPS -> map1 : %s, map2 : %s\n", map_one, map_two);
     
     while (TRUE) {
         input_c = getchar();
@@ -128,7 +128,7 @@ error_code_t argv_to_set(const char* argv_target, char* set_target)
         } else if (!is_start_position && is_range) {
             if (set_target[idx] != '\0') {
                 char tmp_for_range;
-                char idx_for_range;
+                int idx_for_range;
                 
                 start_char = set_target[idx - 2];
                 end_char = set_target[idx];
@@ -137,10 +137,10 @@ error_code_t argv_to_set(const char* argv_target, char* set_target)
                     return ERROR_CODE_INVALID_RANGE;
                 }
                 
-                tmp_for_range = (int) start_char;
+                tmp_for_range = start_char;
                 idx_for_range = idx - 2;
                 while (tmp_for_range <= end_char) {
-                    set_target[idx_for_range] = (char) tmp_for_range;
+                    set_target[idx_for_range] = tmp_for_range;
                     /* printf("%c\n", set_target[idx_for_range]); */
                     tmp_for_range ++;
                     idx_for_range ++;
@@ -157,7 +157,7 @@ error_code_t argv_to_set(const char* argv_target, char* set_target)
         argv_ptr ++;
         
         if (idx >= 512) {
-            return ERROR_CODE_INVALID_FORMAT;
+            return ERROR_CODE_ARGUMENT_TOO_LONG;
         }
     }
     set_target[idx] = '\0';
