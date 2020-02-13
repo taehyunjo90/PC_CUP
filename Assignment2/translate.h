@@ -9,7 +9,7 @@ typedef enum error_code {
     ERROR_CODE_INVALID_FLAG, /* used */
     ERROR_CODE_INVALID_FORMAT, /* used */
     ERROR_CODE_ARGUMENT_TOO_LONG,
-    ERROR_CODE_INVALID_RANGE
+    ERROR_CODE_INVALID_RANGE /* used */
 } error_code_t;
 
 int translate(int argc, const char** argv);

@@ -54,10 +54,10 @@ int translate(int argc, const char** argv)
     map_one[0] = '\0';
     map_two[0] = '\0';
     
-    printf("SHOW SETS -> set1 : %s, set2 : %s\n", set_one, set_two);
+    /* printf("SHOW SETS -> set1 : %s, set2 : %s\n", set_one, set_two); */
     
     set_maps(set_one, set_two, map_one, map_two);
-    printf("SHOW MAPS -> map1 : %s, map2 : %s\n", map_one, map_two);
+    /* printf("SHOW MAPS -> map1 : %s, map2 : %s\n", map_one, map_two); */
     
     while (TRUE) {
         input_c = getchar();
@@ -74,13 +74,15 @@ int translate(int argc, const char** argv)
 
 error_code_t argv_to_set(const char* argv_target, char* set_target)
 {
-    char to_check[] = {'\\', 'a', 'b', 'f', 'n', 'r', 't', 'v', '\'', '\"'}; 
     int idx = 0;
     const char* argv_ptr = argv_target + idx;
     char escape_end_char;
     
-    
-    
+    int is_start_position = TRUE;
+    int is_range = FALSE;
+    char start_char;
+    char end_char;
+       
     while (*argv_ptr != '\0') {
         
         /* escape 문자 처리 과정 */
@@ -116,6 +118,41 @@ error_code_t argv_to_set(const char* argv_target, char* set_target)
             set_target[idx] = *argv_ptr;
         }
         
+        /* 범위 지정 과정 */
+        if (is_start_position) {
+            is_start_position = FALSE;
+        } else if (!is_start_position && !is_range) {
+            if (set_target[idx] == '-') {
+                is_range = TRUE;
+            }
+        } else if (!is_start_position && is_range) {
+            if (set_target[idx] != '\0') {
+                char tmp_for_range;
+                char idx_for_range;
+                
+                start_char = set_target[idx - 2];
+                end_char = set_target[idx];
+                
+                if (start_char > end_char) {
+                    return ERROR_CODE_INVALID_RANGE;
+                }
+                
+                tmp_for_range = (int) start_char;
+                idx_for_range = idx - 2;
+                while (tmp_for_range <= end_char) {
+                    set_target[idx_for_range] = (char) tmp_for_range;
+                    /* printf("%c\n", set_target[idx_for_range]); */
+                    tmp_for_range ++;
+                    idx_for_range ++;
+                }
+                
+                idx = idx_for_range - 1;
+                /* printf("start_char : %c -> end_char : %c\n", start_char, end_char); */
+                is_start_position = TRUE;
+                is_range = FALSE;
+            }
+        }        
+        
         idx ++;
         argv_ptr ++;
         
@@ -124,7 +161,7 @@ error_code_t argv_to_set(const char* argv_target, char* set_target)
         }
     }
     set_target[idx] = '\0';
-    printf("SET : %s\n", set_target);
+    /* printf("SET : %s\n", set_target); */
     return 0;
 }
 
