@@ -54,22 +54,22 @@ int translate(int argc, const char** argv)
     map_one[0] = '\0';
     map_two[0] = '\0';
     
-    printf("SHOW SETS -> set1 : %s, set2 : %s\n", set_one, set_two);
+    /* printf("SHOW SETS -> set1 : %s, set2 : %s\n", set_one, set_two); */
     
     set_maps(set_one, set_two, map_one, map_two);
-    printf("SHOW MAPS -> map1 : %s, map2 : %s\n", map_one, map_two);
+    /* printf("SHOW MAPS -> map1 : %s, map2 : %s\n", map_one, map_two); */
     
     while (TRUE) {
         input_c = getchar();
         if ( input_c == EOF) {
             break;
         }
-        output_c = unit_translate(input_c, map_one, map_two, is_i_option);
+        output_c = translate_unit(input_c, map_one, map_two, is_i_option);
         putchar(output_c);
     }
     
     end:
-    return err_code;
+        return err_code;
 }
 
 error_code_t argv_to_set(const char* argv_target, char* set_target)
@@ -193,13 +193,13 @@ void set_maps(char* set_one, char* set_two, char* map_one, char* map_two)
     map_two[i] = '\0';
 }
 
-char unit_translate(char target_char, char* src_string, char* des_string, int is_i_option)
+char translate_unit(char target_char, char* src_string, char* des_string, int is_i_option)
 {
     int index;
     index = get_index_from_string(target_char, src_string);
     if (index == -1) {
         if (is_i_option) {
-            return unit_translate_i_option(target_char, src_string, des_string);
+            return translate_unit_i_option(target_char, src_string, des_string);
         }
         return target_char;
     } else {
@@ -207,7 +207,7 @@ char unit_translate(char target_char, char* src_string, char* des_string, int is
     }
 }
 
-char unit_translate_i_option(char target_char, char* src_string, char* des_string)
+char translate_unit_i_option(char target_char, char* src_string, char* des_string)
 {   
     int index;
     char converted_char = '\0';
