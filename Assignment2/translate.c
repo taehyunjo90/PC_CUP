@@ -18,11 +18,11 @@ int translate(int argc, const char** argv)
     int input_c;
     int output_c;
     
-    static error_code_t err_code = 0;
-    static int is_i_option = FALSE;
+    error_code_t err_code = 0;
+    int is_i_option = FALSE;
     
     
-    if (argc > 4) {
+    if (argc != 3 && argc != 4) {
         err_code = ERROR_CODE_WRONG_ARGUMENTS_NUMBER;
         goto end;
     }
@@ -40,7 +40,7 @@ int translate(int argc, const char** argv)
             err_code = ERROR_CODE_INVALID_FLAG;
             goto end;
         }
-    } else {
+    } else if (argc == 3) {
         err_code = argv_to_set(argv[1], set_one);
         if (err_code != 0) {
             goto end;
@@ -49,20 +49,15 @@ int translate(int argc, const char** argv)
         if (err_code != 0) {
             goto end;
         }
-        
-        /* strncpy(set_one, argv[1], BUFFER_SET);
-        set_one[BUFFER_SET - 1] = '\0';
-        strncpy(set_two, argv[2], BUFFER_SET);
-        set_two[BUFFER_SET - 1] = '\0'; */
     }
     
     map_one[0] = '\0';
     map_two[0] = '\0';
     
-    /* printf("SHOW SETS -> set1 : %s, set2 : %s\n", set_one, set_two); */
+    printf("SHOW SETS -> set1 : %s, set2 : %s\n", set_one, set_two);
     
     set_maps(set_one, set_two, map_one, map_two);
-    /* printf("SHOW MAPS -> map1 : %s, map2 : %s\n", map_one, map_two); */
+    printf("SHOW MAPS -> map1 : %s, map2 : %s\n", map_one, map_two);
     
     while (TRUE) {
         input_c = getchar();
@@ -83,6 +78,8 @@ error_code_t argv_to_set(const char* argv_target, char* set_target)
     int idx = 0;
     const char* argv_ptr = argv_target + idx;
     char escape_end_char;
+    
+    
     
     while (*argv_ptr != '\0') {
         
@@ -119,8 +116,6 @@ error_code_t argv_to_set(const char* argv_target, char* set_target)
             set_target[idx] = *argv_ptr;
         }
         
-        
-        
         idx ++;
         argv_ptr ++;
         
@@ -128,8 +123,8 @@ error_code_t argv_to_set(const char* argv_target, char* set_target)
             return ERROR_CODE_INVALID_FORMAT;
         }
     }
-    /* printf */("%s", set_target);
-    
+    set_target[idx] = '\0';
+    printf("SET : %s\n", set_target);
     return 0;
 }
 
@@ -144,18 +139,18 @@ void set_maps(char* set_one, char* set_two, char* map_one, char* map_two)
     
     while (*set_one_ptr != '\0') {
         where_same_char_index = get_index_from_string(*set_one_ptr, map_one);
-        if ( where_same_char_index != -1) {
-            map_one[where_same_char_index] = *set_one_ptr;
-            map_two[where_same_char_index] = *set_two_ptr;
-        } else {
+        if ( where_same_char_index == -1) {
             map_one[i] = *set_one_ptr;
             map_two[i] = *set_two_ptr;
+            i ++;
+        } else {
+            map_one[where_same_char_index] = *set_one_ptr;
+            map_two[where_same_char_index] = *set_two_ptr;
         }
         set_one_ptr ++;
         if ( *(set_two_ptr + 1) != '\0') {
             set_two_ptr ++;
         }
-        i ++;
     }
     map_one[i] = '\0';
     map_two[i] = '\0';

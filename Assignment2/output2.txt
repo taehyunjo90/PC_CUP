@@ -1,5 +1,3 @@
-SHOW SETS -> set1 : abc, set2 : defghi
-SHOW MAPS -> map1 : abc, map2 : def
 dddd
 eeeee 
 fffff 
