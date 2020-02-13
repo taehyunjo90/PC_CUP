@@ -1,0 +1,12 @@
+SHOW SETS -> set1 : abcdefg, set2 : hijk
+SHOW MAPS -> map1 : abcdefg, map2 : hijkkkk
+hhhh
+iiiii 
+jjjjj 
+kkkkk
+kkkkk
+kkkkk
+kkkkk
+
+xxxxx
+yyyyy0

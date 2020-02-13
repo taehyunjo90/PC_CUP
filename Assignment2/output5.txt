@@ -1,0 +1,5 @@
+SHOW SETS -> set1 : abc, set2 : cde
+SHOW MAPS -> map1 : abc, map2 : cde
+cde
+cde
+0

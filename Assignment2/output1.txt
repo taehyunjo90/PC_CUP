@@ -1,0 +1,8 @@
+SHOW SETS -> set1 : abc, set2 : def
+SHOW MAPS -> map1 : abc, map2 : def
+dddd
+eeeee 
+fffff 
+
+xxxxx
+yyyyy0
