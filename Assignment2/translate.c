@@ -61,15 +61,15 @@ int translate(int argc, const char** argv)
     
     while (TRUE) {
         input_c = getchar();
-        if ( input_c == EOF) {
+        if (input_c == EOF) {
             break;
         }
         output_c = translate_unit(input_c, map_one, map_two, is_i_option);
         putchar(output_c);
     }
     
-    end:
-        return err_code;
+end:
+    return err_code;
 }
 
 error_code_t argv_to_set(const char* argv_target, char* set_target)
@@ -176,7 +176,7 @@ void set_maps(char* set_one, char* set_two, char* map_one, char* map_two)
     
     while (*set_one_ptr != '\0') {
         where_same_char_index = get_index_from_string(*set_one_ptr, map_one);
-        if ( where_same_char_index == -1) {
+        if (where_same_char_index == -1) {
             map_one[i] = *set_one_ptr;
             map_two[i] = *set_two_ptr;
             i ++;
@@ -185,7 +185,7 @@ void set_maps(char* set_one, char* set_two, char* map_one, char* map_two)
             map_two[where_same_char_index] = *set_two_ptr;
         }
         set_one_ptr ++;
-        if ( *(set_two_ptr + 1) != '\0') {
+        if (*(set_two_ptr + 1) != '\0') {
             set_two_ptr ++;
         }
     }
