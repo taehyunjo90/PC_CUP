@@ -47,7 +47,7 @@ int main(void)
     
     version = get_character("Flash_v3.txt", &flash_v3);
     assert(version == 3);
-/*     assert(strcmp(flash_v3.name, "Flash_v3") == 0);
+    assert(strcmp(flash_v3.name, "Flash_v3") == 0);
     assert(flash_v3.level == 50);
     assert(flash_v3.health == 280);
     assert(flash_v3.mana == 55);
@@ -60,11 +60,11 @@ int main(void)
     assert(flash_v3.minion_count == 0);
     assert(flash_v3.elemental_resistance.fire == 10);
     assert(flash_v3.elemental_resistance.cold == 10);
-    assert(flash_v3.elemental_resistance.lightning == 10); */
+    assert(flash_v3.elemental_resistance.lightning == 10);
     
     version = get_character("Wonderwoman_v3.txt", &wonderwoman_v3);
     assert(version == 3);
-/*     assert(strcmp(wonderwoman_v3.name, "Wonderwoman_v3") == 0);
+    assert(strcmp(wonderwoman_v3.name, "Wonderwoman_v3") == 0);
     assert(wonderwoman_v3.level == 55);
     assert(wonderwoman_v3.health == 320);
     assert(wonderwoman_v3.mana == 75);
@@ -87,7 +87,7 @@ int main(void)
     assert(strcmp(wonderwoman_v3.minions[1].name, "valkyrie") == 0);
     assert(wonderwoman_v3.minions[1].health == 45);
     assert(wonderwoman_v3.minions[1].strength == 20);
-    assert(wonderwoman_v3.minions[1].defence == 4); */
+    assert(wonderwoman_v3.minions[1].defence == 4);
     
     printf("clear test!");
 
