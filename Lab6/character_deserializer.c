@@ -330,7 +330,7 @@ int deserialize_version_3(FILE* file_stream, character_v3_t* out_character)
         size_t i;
         read_one_line(line_one, file_stream);
         
-        for (i = 0; i < out_character->minion_count; i ++ ) {
+        for (i = 0; i < out_character->minion_count; i++) {
             read_one_line(line_two, file_stream);
             
             line_one_ptr = line_one;
