@@ -3,7 +3,7 @@
 #include <string.h>
 #include <ctype.h>
 
-#define BUFFER_SET (1024)
+#define BUFFER_SET (4096)
 #define BUFFER_MAP (1024)
 
 
@@ -54,10 +54,10 @@ int translate(int argc, const char** argv)
     map_one[0] = '\0';
     map_two[0] = '\0';
     
-    /* printf("SHOW SETS -> set1 : %s, set2 : %s\n", set_one, set_two); */
+    printf("SHOW SETS -> set1 : %s, set2 : %s\n", set_one, set_two);
     
     set_maps(set_one, set_two, map_one, map_two);
-    /* printf("SHOW MAPS -> map1 : %s, map2 : %s\n", map_one, map_two); */
+    printf("SHOW MAPS -> map1 : %s, map2 : %s\n", map_one, map_two);
     
     while (TRUE) {
         input_c = getchar();
@@ -144,8 +144,12 @@ error_code_t argv_to_set(const char* argv_target, char* set_target)
                     /* printf("%c\n", set_target[idx_for_range]); */
                     tmp_for_range ++;
                     idx_for_range ++;
+                    
+                    if (idx_for_range >= 512) {
+                        return ERROR_CODE_ARGUMENT_TOO_LONG;
+                    }
+                    
                 }
-                
                 idx = idx_for_range - 1;
                 /* printf("start_char : %c -> end_char : %c\n", start_char, end_char); */
                 is_start_position = TRUE;
