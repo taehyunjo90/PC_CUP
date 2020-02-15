@@ -31,11 +31,15 @@ int translate(int argc, const char** argv)
         if (!strcmp(argv[1], "-i")) {
             is_i_option = TRUE;
         
-            strncpy(set_one, argv[2], BUFFER_SET);
-            set_one[BUFFER_SET - 1] = '\0';
-    
-            strncpy(set_two, argv[3], BUFFER_SET);
-            set_two[BUFFER_SET - 1] = '\0';
+            err_code = argv_to_set(argv[2], set_one);
+            if (err_code != 0) {
+                goto end;
+            }
+            
+            err_code = argv_to_set(argv[3], set_two);
+            if (err_code != 0) {
+                goto end;
+            }
         } else {
             err_code = ERROR_CODE_INVALID_FLAG;
             goto end;
@@ -54,12 +58,12 @@ int translate(int argc, const char** argv)
     map_one[0] = '\0';
     map_two[0] = '\0';
     
-    printf("SHOW SETS -> set1 : %s, set2 : %s\n", set_one, set_two);
-    printf("SHOW SETS LEN -> set1 : %d, set2 : %d\n", strlen(set_one), strlen(set_two));
+/*     printf("SHOW SETS -> set1 : %s, set2 : %s\n", set_one, set_two);
+    printf("SHOW SETS LEN -> set1 : %d, set2 : %d\n", strlen(set_one), strlen(set_two)); */
     
     set_maps(set_one, set_two, map_one, map_two);
-    printf("SHOW MAPS -> map1 : %s, map2 : %s\n", map_one, map_two);
-    printf("SHOW MAPS LEN -> map1 : %d, map2 : %d\n", strlen(map_one), strlen(map_two));
+/*     printf("SHOW MAPS -> map1 : %s, map2 : %s\n", map_one, map_two);
+    printf("SHOW MAPS LEN -> map1 : %d, map2 : %d\n", strlen(map_one), strlen(map_two)); */
     
     while (TRUE) {
         input_c = getchar();
