@@ -58,12 +58,12 @@ int translate(int argc, const char** argv)
     map_one[0] = '\0';
     map_two[0] = '\0';
     
-    /* printf("SHOW SETS -> set1 : %s, set2 : %s\n", set_one, set_two); */
-    /* printf("SHOW SETS LEN -> set1 : %d, set2 : %d\n", strlen(set_one), strlen(set_two)); */
+    /* printf("SHOW SETS -> set1 : %s, set2 : %s\n", set_one, set_two);
+    printf("SHOW SETS LEN -> set1 : %d, set2 : %d\n", strlen(set_one), strlen(set_two)); */
     
     set_maps(set_one, set_two, map_one, map_two);
-    /* printf("SHOW MAPS -> map1 : %s, map2 : %s\n", map_one, map_two); */
-    /* printf("SHOW MAPS LEN -> map1 : %d, map2 : %d\n", strlen(map_one), strlen(map_two)); */
+    /* printf("SHOW MAPS -> map1 : %s, map2 : %s\n", map_one, map_two);
+    printf("SHOW MAPS LEN -> map1 : %d, map2 : %d\n", strlen(map_one), strlen(map_two)); */
     
     while (TRUE) {
         input_c = getchar();
