@@ -3,17 +3,17 @@
 #include <string.h>
 #include <ctype.h>
 
-#define BUFFER_SET (4096)
+#define BUFFER_SET (1024)
 #define BUFFER_MAP (1024)
 
 
 int translate(int argc, const char** argv)
 {
-    char set_one[BUFFER_SET];
-    char set_two[BUFFER_SET];
+    char set_one[BUFFER_SET] = {'\0', };
+    char set_two[BUFFER_SET] = {'\0', };
 
-    char map_one[BUFFER_MAP];
-    char map_two[BUFFER_MAP];
+    char map_one[BUFFER_MAP] = {'\0', };
+    char map_two[BUFFER_MAP] = {'\0', };
     
     int input_c;
     int output_c;
@@ -58,12 +58,12 @@ int translate(int argc, const char** argv)
     map_one[0] = '\0';
     map_two[0] = '\0';
     
-/*     printf("SHOW SETS -> set1 : %s, set2 : %s\n", set_one, set_two);
-    printf("SHOW SETS LEN -> set1 : %d, set2 : %d\n", strlen(set_one), strlen(set_two)); */
+    /* printf("SHOW SETS -> set1 : %s, set2 : %s\n", set_one, set_two); */
+    /* printf("SHOW SETS LEN -> set1 : %d, set2 : %d\n", strlen(set_one), strlen(set_two)); */
     
     set_maps(set_one, set_two, map_one, map_two);
-/*     printf("SHOW MAPS -> map1 : %s, map2 : %s\n", map_one, map_two);
-    printf("SHOW MAPS LEN -> map1 : %d, map2 : %d\n", strlen(map_one), strlen(map_two)); */
+    /* printf("SHOW MAPS -> map1 : %s, map2 : %s\n", map_one, map_two); */
+    /* printf("SHOW MAPS LEN -> map1 : %d, map2 : %d\n", strlen(map_one), strlen(map_two)); */
     
     while (TRUE) {
         input_c = getchar();
