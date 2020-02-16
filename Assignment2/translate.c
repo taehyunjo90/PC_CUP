@@ -28,7 +28,7 @@ int translate(int argc, const char** argv)
     }
     
     if (argc == 4) {
-        if (!strcmp(argv[1], "-i")) {
+        if (strcmp(argv[1], "-i") == 0) {
             is_i_option = TRUE;
         
             err_code = argv_to_set(argv[2], set_one);
@@ -54,9 +54,6 @@ int translate(int argc, const char** argv)
             goto end;
         }
     }
-    
-    map_one[0] = '\0';
-    map_two[0] = '\0';
     
     /* printf("SHOW SETS -> set1 : %s, set2 : %s\n", set_one, set_two);
     printf("SHOW SETS LEN -> set1 : %d, set2 : %d\n", strlen(set_one), strlen(set_two)); */
@@ -110,9 +107,9 @@ error_code_t argv_to_set(const char* argv_target, char* set_target)
             } else if (escape_end_char == 't') {
                 set_target[idx] = '\t';
             } else if (escape_end_char == 'v') {
-                set_target[idx] = '\a';
-            } else if (escape_end_char == 'a') {
                 set_target[idx] = '\v';
+            } else if (escape_end_char == 'a') {
+                set_target[idx] = '\a';
             } else if (escape_end_char == '\'') {
                 set_target[idx] = '\'';
             } else if (escape_end_char == '\"') {
@@ -250,9 +247,11 @@ int get_index_from_string(char target_char, char* string)
     }
     
     if (is_found) {
+        /* printf("found index : %d, is found : %d\n", index, is_found); */
         return index;
     } else {
         index = -1;
+        /* printf("found index : %d, is found : %d\n", index, is_found); */
         return index;
     }
 }
