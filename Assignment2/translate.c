@@ -21,6 +21,11 @@ int translate(int argc, const char** argv)
     error_code_t err_code = 0;
     int is_i_option = FALSE;
     
+    set_one[0] = '\0';
+    set_two[0] = '\0';
+    map_one[0] = '\0';
+    map_two[0] = '\0';
+    
     
     if (argc != 3 && argc != 4) {
         err_code = ERROR_CODE_WRONG_ARGUMENTS_NUMBER;
@@ -191,6 +196,7 @@ void set_maps(char* set_one, char* set_two, char* map_one, char* map_two)
             map_one[where_same_char_index] = *set_one_ptr;
             map_two[where_same_char_index] = *set_two_ptr;
         }
+        
         set_one_ptr ++;
         if (*(set_two_ptr + 1) != '\0') {
             set_two_ptr ++;
