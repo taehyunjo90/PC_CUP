@@ -9,23 +9,17 @@
 
 int translate(int argc, const char** argv)
 {
-    char set_one[BUFFER_SET];
-    char set_two[BUFFER_SET];
+    char set_one[BUFFER_SET] = {'\0', };
+    char set_two[BUFFER_SET] = {'\0', };
 
-    char map_one[BUFFER_MAP];
-    char map_two[BUFFER_MAP];
+    char map_one[BUFFER_MAP] = {'\0', };
+    char map_two[BUFFER_MAP] = {'\0', };
     
     int input_c;
     int output_c;
     
     error_code_t err_code = 0;
-    int is_i_option = FALSE;
-    
-    set_one[0] = '\0';
-    set_two[0] = '\0';
-    map_one[0] = '\0';
-    map_two[0] = '\0';
-    
+    int is_i_option = FALSE;    
     
     if (argc != 3 && argc != 4) {
         err_code = ERROR_CODE_WRONG_ARGUMENTS_NUMBER;
