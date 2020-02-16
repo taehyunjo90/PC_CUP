@@ -9,11 +9,11 @@
 
 int translate(int argc, const char** argv)
 {
-    char set_one[BUFFER_SET] = {'\0', };
-    char set_two[BUFFER_SET] = {'\0', };
+    char set_one[BUFFER_SET];
+    char set_two[BUFFER_SET];
 
-    char map_one[BUFFER_MAP] = {'\0', };
-    char map_two[BUFFER_MAP] = {'\0', };
+    char map_one[BUFFER_MAP];
+    char map_two[BUFFER_MAP];
     
     int input_c;
     int output_c;
