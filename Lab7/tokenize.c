@@ -57,10 +57,10 @@ char** tokenize_malloc(const char* str, const char* delim)
         tokens_size++;
         if (tokens == NULL) {
             pa_tokens = malloc(tokens_size * sizeof(char*));
-        }
-        else {
+        } else {
             pa_tokens = realloc(tokens, tokens_size * sizeof(char*));
         }
+        
 
         if (pa_tokens != NULL) {
             tokens = pa_tokens;
@@ -79,10 +79,10 @@ char** tokenize_malloc(const char* str, const char* delim)
     tokens_size++;
     if (tokens == NULL) {
         pa_tokens = malloc(tokens_size * sizeof(char*));
-    }
-    else {
+    } else {
         pa_tokens = realloc(tokens, tokens_size * sizeof(char*));
     }
+    
 
     if (pa_tokens != NULL) {
         tokens = pa_tokens;
