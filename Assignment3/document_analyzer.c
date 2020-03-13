@@ -39,11 +39,11 @@ int load_document(const char* document)
         len_readed = strlen(buffer);
         if (g_loaded_document == NULL) {
             malloc_memory_size += len_readed + 1;
-            g_loaded_document = malloc(malloc_memory_size);
+            g_loaded_document = (char*)malloc(malloc_memory_size);
             strcpy(g_loaded_document, buffer);
         } else {
             malloc_memory_size += len_readed;
-            g_loaded_document = realloc(g_loaded_document, malloc_memory_size);
+            g_loaded_document = (char*)realloc(g_loaded_document, malloc_memory_size);
             strcpy(g_loaded_document + malloc_memory_size - len_readed - 1, buffer);
         }
     }
@@ -54,11 +54,11 @@ int load_document(const char* document)
         goto end;
     }
 
-    g_document = malloc(sizeof(char***) * 2);
+    g_document = (char****)malloc(sizeof(char***) * 2);
     g_document[1] = NULL;
-    g_paragraph = malloc(sizeof(char**) * 2);
+    g_paragraph = (char***)malloc(sizeof(char**) * 2);
     g_paragraph[1] = NULL;
-    g_sentence = malloc(sizeof(char*) * 2);
+    g_sentence = (char**)malloc(sizeof(char*) * 2);
     g_sentence[1] = NULL;
 
     /* Analyze */
@@ -71,7 +71,7 @@ int load_document(const char* document)
             word_start_ptr = get_next_word_start(p);
             p = word_start_ptr;
 
-            g_sentence = realloc(g_sentence, sizeof(char*) * (cur_word_count + 3));
+            g_sentence = (char**)realloc(g_sentence, sizeof(char*) * (cur_word_count + 2));
             g_sentence[cur_word_count++] = pa_word;
             g_sentence[cur_word_count] = NULL;
 
@@ -81,16 +81,15 @@ int load_document(const char* document)
             word_start_ptr = get_next_word_start(p);
             p = word_start_ptr;
 
-            g_sentence = realloc(g_sentence, sizeof(char*) * (cur_word_count + 2));
+            g_sentence = (char**)realloc(g_sentence, sizeof(char*) * (cur_word_count + 2));
             g_sentence[cur_word_count++] = pa_word;
             g_sentence[cur_word_count] = NULL;
 
-            g_paragraph = realloc(g_paragraph, sizeof(char**) * (cur_sentence_count + 2));
+            g_paragraph = (char***)realloc(g_paragraph, sizeof(char**) * (cur_sentence_count + 2));
             g_paragraph[cur_sentence_count++] = g_sentence;
             g_paragraph[cur_sentence_count] = NULL;
-            printf("new sentence :: %d, %d, %d\n", cur_word_count + 1, cur_sentence_count + 1, cur_paragraph_count + 1);
 
-            g_sentence = malloc(sizeof(char*) * 2);
+            g_sentence = (char**)malloc(sizeof(char*) * 2);
             g_sentence[1] = NULL;
             cur_word_count = 0;
 
@@ -100,14 +99,12 @@ int load_document(const char* document)
 
             g_paragraph[cur_sentence_count] = NULL;
 
-            g_document = realloc(g_document, sizeof(char***) * (cur_paragraph_count + 2));
+            g_document = (char****)realloc(g_document, sizeof(char***) * (cur_paragraph_count + 2));
             g_document[cur_paragraph_count++] = g_paragraph;
             g_document[cur_paragraph_count] = NULL;
 
-            printf("new paragraph :: %d, %d, %d\n", cur_word_count + 1, cur_sentence_count + 1, cur_paragraph_count + 1);
-
             cur_sentence_count = 0;
-            g_paragraph = malloc(sizeof(char**) * 2);
+            g_paragraph = (char***)malloc(sizeof(char**) * 2);
             g_paragraph[1] = NULL;
             
         }
@@ -122,7 +119,7 @@ int load_document(const char* document)
     g_sentence[cur_word_count] = NULL;
     g_paragraph[cur_sentence_count] = NULL;
 
-    g_document = realloc(g_document, sizeof(char***) * (cur_paragraph_count + 2));
+    g_document = (char****)realloc(g_document, sizeof(char***) * (cur_paragraph_count + 2));
     g_document[cur_paragraph_count++] = g_paragraph;
     g_document[cur_paragraph_count] = NULL;
 
@@ -331,7 +328,7 @@ void set_word_malloc(char* start_word_ptr, char* delim_word_ptr, char** pa_word)
     int word_len = delim_word_ptr - start_word_ptr;
 
     if (word_len > 0) {
-        *pa_word = malloc(word_len * sizeof(char) + 1);
+        *pa_word = (char*)malloc(word_len * sizeof(char) + 1);
         strncpy(*pa_word, start_word_ptr, word_len);
         *(*pa_word + word_len) = '\0';
     } else {
@@ -375,11 +372,9 @@ void dispose(void)
         while (g_document[i] != NULL) {
             while (g_document[i][j] != NULL) {
                 while (g_document[i][j][k] != NULL) {
-                    printf("i, j, k : %d, %d, %d\n", i, j, k);
                     free(g_document[i][j][k]);
                     k++;
                 }
-                printf("i, j, k : %d, %d, %d\n", i, j, k);
                 free(g_document[i][j][k]);
                 j++;
                 k = 0;

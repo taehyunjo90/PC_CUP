@@ -87,12 +87,9 @@ int main(void)
     size_t i = 0U;
     size_t j = 0U;
 
-    printf("%d", get_total_paragraph_count());
     
-    //test_empty();
-    //test_document();
-
-    
+    test_empty();
+    test_document();
 
     assert(load_document("doesntexist.txt") == FALSE);
     assert(load_document("input.txt") == TRUE);
@@ -143,8 +140,6 @@ int main(void)
     assert(print_as_tree("output.txt") == TRUE);
 
     dispose();
-
-    return 0;
 
     printf("DONE");
 
