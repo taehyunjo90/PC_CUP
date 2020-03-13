@@ -26,9 +26,8 @@ int load_document(const char* document)
 
     FILE* file_stream = fopen(document, "r");
 
-    g_document = malloc(sizeof(char***) * 2);
-    g_paragraph = malloc(sizeof(char**) * 2);
-    g_sentence = malloc(sizeof(char*) * 2);
+    
+
 
     /* Early exit*/
     if (file_stream == NULL) {
@@ -50,12 +49,17 @@ int load_document(const char* document)
     }
     fclose(file_stream);
 
+    /* if loaded document is empty*/
     if (g_loaded_document == NULL) {
         g_loaded_document = malloc(sizeof(char) * 1);
         g_loaded_document[0] = '\0';
         g_document = NULL;
         goto end;
     }
+
+    g_document = malloc(sizeof(char***) * 2);
+    g_paragraph = malloc(sizeof(char**) * 2);
+    g_sentence = malloc(sizeof(char*) * 2);
 
     /* Analyze */
     p = g_loaded_document;
@@ -349,6 +353,7 @@ void dispose(void)
                     free(g_document[i][j][k]);
                     k++;
                 }
+                free(g_document[i][j][k]);
                 j++;
                 k = 0;
             }
@@ -356,6 +361,7 @@ void dispose(void)
             j = 0;
             k = 0;
         }
+
 
         i = 0;
         j = 0;
@@ -366,6 +372,7 @@ void dispose(void)
                 free(g_document[i][j]);
                 j++;
             }
+            free(g_document[i][j]);
             i++;
             j = 0;
         }
@@ -378,6 +385,7 @@ void dispose(void)
             free(g_document[i]);
             i++;
         }
+        free(g_document[i]);
 
         free(g_document);
     }
