@@ -1,7 +1,6 @@
 #ifndef DOCUMENT_ANALYZER_H
 #define DOCUMENT_ANALYZER_H
 
-#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

@@ -1,7 +1,5 @@
 #include "document_analyzer.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+
 
 #define BUFFER_LENGTH (32)
 
@@ -26,12 +24,11 @@ int load_document(const char* document)
 
     char* p;
 
+    FILE* file_stream = fopen(document, "r");
+    
     g_document = malloc(sizeof(char***) * 2);
     g_paragraph = malloc(sizeof(char**) * 2);
     g_sentence = malloc(sizeof(char*) * 2);
-
-
-    FILE* file_stream = fopen(document, "r");
 
     /* Early exit*/
     if (file_stream == NULL) {
