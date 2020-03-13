@@ -89,8 +89,8 @@ int main(void)
 
     printf("%d", get_total_paragraph_count());
     
-    test_empty();
-    test_document();
+    //test_empty();
+    //test_document();
 
     
 
