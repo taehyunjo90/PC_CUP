@@ -11,7 +11,6 @@ void test_empty(void)
     assert(get_total_sentence_count() == 0U);
     assert(get_total_paragraph_count() == 0U);
 
-
     dispose();
 
     puts("test_empty");
@@ -86,7 +85,6 @@ int main(void)
     const char*** paragraph = NULL;
     size_t i = 0U;
     size_t j = 0U;
-
     
     test_empty();
     test_document();
@@ -141,7 +139,7 @@ int main(void)
 
     dispose();
 
-    printf("DONE");
+    printf("DONE");   
 
     return 0;
 }

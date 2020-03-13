@@ -364,9 +364,9 @@ char* get_next_paragraph_start(char* p)
 
 void dispose(void)
 {
-    size_t i = 0;
-    size_t j = 0;
-    size_t k = 0;
+    int i = 0;
+    int j = 0;
+    int k = 0;
 
     if (g_document != NULL) {
         while (g_document[i] != NULL) {
@@ -415,6 +415,7 @@ void dispose(void)
     g_document = NULL;
     g_paragraph = NULL;
     g_sentence = NULL;
+
 }
 
 int is_delim_word(char* p)
