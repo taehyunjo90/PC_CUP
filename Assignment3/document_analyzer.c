@@ -2,7 +2,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#define _CRT_SECURE_NO_WARNINGS
 
 #define BUFFER_LENGTH (32)
 
@@ -19,7 +18,6 @@ int load_document(const char* document)
     int malloc_memory_size = 0;
 
     char* word_start_ptr;
-    int word_len;
     char* pa_word = NULL;
 
     int cur_word_count = 0;
@@ -27,7 +25,6 @@ int load_document(const char* document)
     int cur_paragraph_count = 0;
 
     char* p;
-    int i;
 
     g_document = malloc(sizeof(char***) * 2);
     g_paragraph = malloc(sizeof(char**) * 2);
@@ -56,7 +53,7 @@ int load_document(const char* document)
     }
     fclose(file_stream);
 
-    if (g_loaded_document == "") {
+    if (strcmp(g_loaded_document, "") == 0) {
         return FALSE;
     }
 
@@ -214,7 +211,6 @@ const char** get_sentence(const size_t paragraph_index, const size_t sentence_in
 {
     size_t total_paragraph_count = get_total_paragraph_count();
     size_t selected_sentence_count;
-    size_t i = 0;
     const char*** paragraph;
 
     if (paragraph_index < total_paragraph_count) {
