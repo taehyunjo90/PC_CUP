@@ -82,13 +82,17 @@ void test_document(void)
 
 int main(void)
 {
-    test_empty();
-    test_document();
-
     const char** sentence = NULL;
     const char*** paragraph = NULL;
     size_t i = 0U;
     size_t j = 0U;
+
+    printf("%d", get_total_paragraph_count());
+    
+    test_empty();
+    test_document();
+
+    
 
     assert(load_document("doesntexist.txt") == FALSE);
     assert(load_document("input.txt") == TRUE);

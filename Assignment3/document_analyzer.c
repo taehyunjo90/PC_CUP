@@ -406,7 +406,10 @@ void dispose(void)
 
         free(g_document);
     }
-
+    g_loaded_document = NULL;
+    g_document = NULL;
+    g_paragraph = NULL;
+    g_sentence = NULL;
 }
 
 int is_delim_word(char* p)
