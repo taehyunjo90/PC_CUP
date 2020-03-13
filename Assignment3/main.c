@@ -90,6 +90,22 @@ int main(void)
 {
     test_empty();
     test_document();
+
+    assert(load_document("input.txt") == TRUE);
+    assert(print_as_tree("output.txt") == TRUE);
+    printf("%d", get_total_sentence_count());
+    dispose();
+
+    assert(load_document("input.txt") == TRUE);
+    assert(print_as_tree("output.txt") == TRUE);
+    printf("%d", get_total_sentence_count());
+    dispose();
+
+    assert(load_document("input.txt") == TRUE);
+    assert(print_as_tree("output.txt") == TRUE);
+    printf("%d", get_total_sentence_count());
+    dispose();
+
     printf("DONE");
 
     return 0;

@@ -1,17 +1,15 @@
 #include "document_analyzer.h"
 
-
 #define BUFFER_LENGTH (32)
 
-char buffer[BUFFER_LENGTH];
 char* g_loaded_document = NULL;
-
 char**** g_document = NULL;
 char*** g_paragraph = NULL;
 char** g_sentence = NULL;
 
 int load_document(const char* document)
 {
+    char buffer[BUFFER_LENGTH];
     int len_readed = 0;
     int malloc_memory_size = 0;
 
@@ -26,12 +24,14 @@ int load_document(const char* document)
 
     FILE* file_stream = fopen(document, "r");
 
-    
-
+    g_loaded_document = NULL;
+    g_document = NULL;
+    g_paragraph = NULL;
+    g_sentence = NULL;
 
     /* Early exit*/
     if (file_stream == NULL) {
-        return  FALSE;
+        return FALSE;
     }
 
     /* load document */
@@ -247,16 +247,16 @@ const char** get_sentence(const size_t paragraph_index, const size_t sentence_in
 size_t get_sentence_word_count(const char** sentence)
 {
 
-    size_t word_count = 0;
+    size_t setence_count = 0;
 
     size_t i = 0;
 
     while (sentence[i] != NULL) {
-        word_count++;
+        setence_count++;
         i++;
     }
 
-    return word_count;
+    return setence_count;
 }
 
 int print_as_tree(const char* filename)
@@ -389,12 +389,6 @@ void dispose(void)
 
         free(g_document);
     }
-
-    g_loaded_document = NULL;
-    g_document = NULL;
-    g_paragraph = NULL;
-    g_sentence = NULL;
-    
 
 }
 
