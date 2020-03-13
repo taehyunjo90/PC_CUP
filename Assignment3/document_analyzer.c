@@ -56,8 +56,11 @@ int load_document(const char* document)
     }
 
     g_document = malloc(sizeof(char***) * 2);
+    g_document[1] = NULL;
     g_paragraph = malloc(sizeof(char**) * 2);
+    g_paragraph[1] = NULL;
     g_sentence = malloc(sizeof(char*) * 2);
+    g_sentence[1] = NULL;
 
     /* Analyze */
     p = g_loaded_document;
@@ -71,6 +74,7 @@ int load_document(const char* document)
 
             g_sentence[cur_word_count++] = pa_word;
             g_sentence = realloc(g_sentence, sizeof(char*) * (cur_word_count + 2));
+            g_sentence[cur_word_count] = NULL;
 
         } else if (is_delim_sentence(p)) {
             set_word_malloc(word_start_ptr, p, &pa_word);
@@ -82,8 +86,10 @@ int load_document(const char* document)
 
             g_paragraph[cur_sentence_count++] = g_sentence;
             g_paragraph = realloc(g_paragraph, sizeof(char**) * (cur_sentence_count + 2));
+            g_paragraph[cur_sentence_count] = NULL;
 
             g_sentence = malloc(sizeof(char*) * 2);
+            g_sentence[1] = NULL;
             cur_word_count = 0;
 
         } else if (is_delim_paragraph(p)) {
@@ -93,9 +99,15 @@ int load_document(const char* document)
             g_paragraph[cur_sentence_count] = NULL;
             g_document[cur_paragraph_count++] = g_paragraph;
             g_document = realloc(g_document, sizeof(char***) * (cur_paragraph_count + 2));
+            g_document[cur_paragraph_count] = NULL;
 
             g_paragraph = malloc(sizeof(char**) * 2);
+            g_paragraph[1] = NULL;
             cur_sentence_count = 0;
+        }
+
+        if (*p == '\0') {
+            break;
         }
 
         p++;
@@ -119,7 +131,6 @@ size_t get_total_word_count(void)
     size_t j = 0;
     size_t k = 0;
 
-    printf("total_word_count start : %d\n", total_word_count);
     if (g_document == NULL) {
         return (size_t)0;
     }
@@ -137,7 +148,6 @@ size_t get_total_word_count(void)
         j = 0;
         k = 0;
     }
-    printf("total_word_count end : %d\n", total_word_count);
     return total_word_count;
 
 }
