@@ -51,8 +51,6 @@ int load_document(const char* document)
 
     /* if loaded document is empty*/
     if (g_loaded_document == NULL) {
-        g_loaded_document = malloc(sizeof(char) * 1);
-        g_loaded_document[0] = '\0';
         g_document = NULL;
         goto end;
     }
@@ -103,12 +101,13 @@ int load_document(const char* document)
         p++;
     }
 
+    g_sentence[cur_word_count] = NULL;
     g_paragraph[cur_sentence_count] = NULL;
     g_document[cur_paragraph_count++] = g_paragraph;
     g_document[cur_paragraph_count] = NULL;
+    free(g_loaded_document);
 
 end:
-    free(g_loaded_document);
     return TRUE;
 }
 
@@ -120,6 +119,7 @@ size_t get_total_word_count(void)
     size_t j = 0;
     size_t k = 0;
 
+    printf("total_word_count start : %d\n", total_word_count);
     if (g_document == NULL) {
         return (size_t)0;
     }
@@ -137,6 +137,7 @@ size_t get_total_word_count(void)
         j = 0;
         k = 0;
     }
+    printf("total_word_count end : %d\n", total_word_count);
     return total_word_count;
 
 }
@@ -325,6 +326,9 @@ char* get_next_word_start(char* p)
     char* tmp = p;
 
     while (is_delim_word(tmp) || is_delim_sentence(tmp)) {
+        if (*tmp == '\0') {
+            return tmp - 1;
+        }
         tmp++;
     }
     return tmp;
@@ -335,6 +339,9 @@ char* get_next_paragraph_start(char* p)
     char* tmp = p;
 
     while (is_delim_word(tmp) || is_delim_sentence(tmp) || is_delim_paragraph(tmp)) {
+        if (*tmp == '\0') {
+            return tmp - 1;
+        }
         tmp++;
     }
     return tmp;

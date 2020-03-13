@@ -5,17 +5,11 @@
 
 void test_empty(void)
 {
-    printf("1");
     assert(load_document("input_empty.txt") == TRUE);
-    printf("2");
     assert(print_as_tree("output_empty.txt") == FALSE);
-    printf("3");
     assert(get_total_word_count() == 0U);
-    printf("4");
     assert(get_total_sentence_count() == 0U);
-    printf("5");
     assert(get_total_paragraph_count() == 0U);
-    printf("6");
 
 
     dispose();
@@ -91,20 +85,62 @@ int main(void)
     test_empty();
     test_document();
 
+    const char** sentence = NULL;
+    const char*** paragraph = NULL;
+    size_t i = 0U;
+    size_t j = 0U;
+
+    assert(load_document("doesntexist.txt") == FALSE);
     assert(load_document("input.txt") == TRUE);
+    
+    print_as_tree("test_output.txt");
+    assert(get_total_word_count() == 58U);
+    assert(get_total_sentence_count() == 9U);
+    assert(get_total_paragraph_count() == 3U);
+
+    assert(get_paragraph(3) == NULL);
+
+    paragraph = get_paragraph(1);
+    assert(paragraph != NULL);
+    assert(get_paragraph_word_count(paragraph) == 14);
+    assert(get_paragraph_sentence_count(paragraph) == 2);
+
+    assert(strcmp(paragraph[i][j++], "This") == 0);
+    assert(strcmp(paragraph[i][j++], "is") == 0);
+    assert(strcmp(paragraph[i][j++], "the") == 0);
+    assert(strcmp(paragraph[i][j++], "second") == 0);
+    assert(strcmp(paragraph[i++][j++], "paragraph") == 0);
+
+    j = 0U;
+
+    assert(strcmp(paragraph[i][j++], "I") == 0);
+    assert(strcmp(paragraph[i][j++], "wonder") == 0);
+    assert(strcmp(paragraph[i][j++], "how") == 0);
+    assert(strcmp(paragraph[i][j++], "many") == 0);
+    assert(strcmp(paragraph[i][j++], "sentences") == 0);
+    assert(strcmp(paragraph[i][j++], "you") == 0);
+    assert(strcmp(paragraph[i][j++], "will") == 0);
+    assert(strcmp(paragraph[i][j++], "see") == 0);
+    assert(strcmp(paragraph[i][j++], "here") == 0);
+
+    assert(get_sentence(0, 10) == NULL);
+
+    sentence = get_sentence(0, 2);
+    assert(sentence != NULL);
+    assert(get_sentence_word_count(sentence) == 4);
+
+    i = 0U;
+
+    assert(strcmp(sentence[i++], "Is") == 0);
+    assert(strcmp(sentence[i++], "this") == 0);
+    assert(strcmp(sentence[i++], "too") == 0);
+    assert(strcmp(sentence[i++], "easy") == 0);
+
     assert(print_as_tree("output.txt") == TRUE);
-    printf("%d", get_total_sentence_count());
+
     dispose();
 
-    assert(load_document("input.txt") == TRUE);
-    assert(print_as_tree("output.txt") == TRUE);
-    printf("%d", get_total_sentence_count());
-    dispose();
-
-    assert(load_document("input.txt") == TRUE);
-    assert(print_as_tree("output.txt") == TRUE);
-    printf("%d", get_total_sentence_count());
-    dispose();
+    return 0;
 
     printf("DONE");
 
