@@ -28,7 +28,7 @@ size_t get_sentence_word_count(const char** sentence);
 
 int print_as_tree(const char* filename);
 
-void set_word_malloc(char* start_word_ptr, char* delim_word_ptr, char* pa_word);
+void set_word_malloc(char* start_word_ptr, char* delim_word_ptr, char** pa_word);
 
 char* get_next_word_start(char* p);
 

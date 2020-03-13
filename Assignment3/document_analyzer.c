@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#define _CRT_SECURE_NO_WARNINGS
 
 #define BUFFER_LENGTH (32)
 
@@ -170,7 +171,7 @@ const char*** get_paragraph(const size_t paragraph_index)
     size_t total_paragraph_count = get_total_paragraph_count();
 
     if (paragraph_index < total_paragraph_count) {
-        return g_document[paragraph_index];
+        return (const char***)g_document[paragraph_index];
     } else {
         return NULL;
     }
@@ -214,17 +215,17 @@ const char** get_sentence(const size_t paragraph_index, const size_t sentence_in
     size_t total_paragraph_count = get_total_paragraph_count();
     size_t selected_sentence_count;
     size_t i = 0;
-    char*** paragraph;
+    const char*** paragraph;
 
     if (paragraph_index < total_paragraph_count) {
-        paragraph = g_document[paragraph_index];
+        paragraph = (const char***)g_document[paragraph_index];
     } else {
         return NULL;
     }
 
     selected_sentence_count = get_paragraph_sentence_count(paragraph);
     if (sentence_index < selected_sentence_count) {
-        return paragraph[sentence_index];
+        return (const char**)paragraph[sentence_index];
     } else {
         return NULL;
     }
@@ -324,8 +325,6 @@ char* get_next_paragraph_start(char* p)
 
 void dispose(void)
 {
-    size_t total_word_count = 0;
-
     size_t i = 0;
     size_t j = 0;
     size_t k = 0;
