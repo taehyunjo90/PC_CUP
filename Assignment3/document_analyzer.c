@@ -72,8 +72,8 @@ int load_document(const char* document)
             word_start_ptr = get_next_word_start(p);
             p = word_start_ptr;
 
-            g_sentence[cur_word_count++] = pa_word;
             g_sentence = realloc(g_sentence, sizeof(char*) * (cur_word_count + 2));
+            g_sentence[cur_word_count++] = pa_word;
             g_sentence[cur_word_count] = NULL;
 
         } else if (is_delim_sentence(p)) {
@@ -81,11 +81,13 @@ int load_document(const char* document)
 
             word_start_ptr = get_next_word_start(p);
             p = word_start_ptr;
+
+            g_sentence = realloc(g_sentence, sizeof(char*) * (cur_word_count + 2));
             g_sentence[cur_word_count++] = pa_word;
             g_sentence[cur_word_count] = NULL;
 
-            g_paragraph[cur_sentence_count++] = g_sentence;
             g_paragraph = realloc(g_paragraph, sizeof(char**) * (cur_sentence_count + 2));
+            g_paragraph[cur_sentence_count++] = g_sentence;
             g_paragraph[cur_sentence_count] = NULL;
 
             g_sentence = malloc(sizeof(char*) * 2);
@@ -97,8 +99,9 @@ int load_document(const char* document)
             p = word_start_ptr;
 
             g_paragraph[cur_sentence_count] = NULL;
-            g_document[cur_paragraph_count++] = g_paragraph;
+
             g_document = realloc(g_document, sizeof(char***) * (cur_paragraph_count + 2));
+            g_document[cur_paragraph_count++] = g_paragraph;
             g_document[cur_paragraph_count] = NULL;
 
             g_paragraph = malloc(sizeof(char**) * 2);
@@ -115,6 +118,8 @@ int load_document(const char* document)
 
     g_sentence[cur_word_count] = NULL;
     g_paragraph[cur_sentence_count] = NULL;
+
+    g_document = realloc(g_document, sizeof(char***) * (cur_paragraph_count + 2));
     g_document[cur_paragraph_count++] = g_paragraph;
     g_document[cur_paragraph_count] = NULL;
     free(g_loaded_document);
