@@ -54,13 +54,6 @@ int load_document(const char* document)
         goto end;
     }
 
-    //g_document = (char****)malloc(sizeof(char***) * 2);
-    //g_document[1] = NULL;
-    //g_paragraph = (char***)malloc(sizeof(char**) * 2);
-    //g_paragraph[1] = NULL;
-    //g_sentence = (char**)malloc(sizeof(char*) * 2);
-    //g_sentence[1] = NULL;
-
     /* Analyze */
     p = g_loaded_document;
     word_start_ptr = p;
