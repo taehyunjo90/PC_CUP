@@ -54,12 +54,12 @@ int load_document(const char* document)
         goto end;
     }
 
-    g_document = (char****)malloc(sizeof(char***) * 2);
-    g_document[1] = NULL;
-    g_paragraph = (char***)malloc(sizeof(char**) * 2);
-    g_paragraph[1] = NULL;
-    g_sentence = (char**)malloc(sizeof(char*) * 2);
-    g_sentence[1] = NULL;
+    //g_document = (char****)malloc(sizeof(char***) * 2);
+    //g_document[1] = NULL;
+    //g_paragraph = (char***)malloc(sizeof(char**) * 2);
+    //g_paragraph[1] = NULL;
+    //g_sentence = (char**)malloc(sizeof(char*) * 2);
+    //g_sentence[1] = NULL;
 
     /* Analyze */
     p = g_loaded_document;
@@ -116,14 +116,15 @@ int load_document(const char* document)
         p++;
     }
 
-    g_sentence[cur_word_count] = NULL;
-    g_paragraph[cur_sentence_count] = NULL;
+    //g_sentence[cur_word_count] = NULL;
+    //g_paragraph[cur_sentence_count] = NULL;
 
     g_document = (char****)realloc(g_document, sizeof(char***) * (cur_paragraph_count + 2));
     g_document[cur_paragraph_count++] = g_paragraph;
     g_document[cur_paragraph_count] = NULL;
 
     free(g_loaded_document);
+    free(g_sentence);
 end:
     return TRUE;
 }

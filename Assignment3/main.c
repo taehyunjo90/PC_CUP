@@ -3,6 +3,8 @@
 #include "document_analyzer.h"
 #include <stdio.h>
 
+void* p;
+
 void test_empty(void)
 {
     assert(load_document("input_empty.txt") == TRUE);
@@ -80,12 +82,13 @@ void test_document(void)
 
 
 int main(void)
-{
+{   
     const char** sentence = NULL;
     const char*** paragraph = NULL;
     size_t i = 0U;
     size_t j = 0U;
     
+
     test_empty();
     test_document();
 
