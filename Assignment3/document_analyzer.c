@@ -109,9 +109,6 @@ int load_document(const char* document)
         p++;
     }
 
-    //g_sentence[cur_word_count] = NULL;
-    //g_paragraph[cur_sentence_count] = NULL;
-
     g_document = (char****)realloc(g_document, sizeof(char***) * (cur_paragraph_count + 2));
     g_document[cur_paragraph_count++] = g_paragraph;
     g_document[cur_paragraph_count] = NULL;
