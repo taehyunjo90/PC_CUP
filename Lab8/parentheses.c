@@ -16,7 +16,7 @@ size_t get_matching_parentheses(parenthesis_t* parentheses, size_t max_size, con
                 add_parentheses(parentheses, &len_parenthesis, max_size, backward_p_idx, forward_p_idx);
             }
         }
-        forward_p_idx ++;
+        forward_p_idx++;
         forward_p++;
     }
 
@@ -25,7 +25,8 @@ size_t get_matching_parentheses(parenthesis_t* parentheses, size_t max_size, con
     return len_parenthesis;
 }
 
-int is_end_paren(char end_paren) {
+int is_end_paren(char end_paren)
+{
     
     char* parens = "})]>";
     char* tmp = parens;
@@ -39,7 +40,8 @@ int is_end_paren(char end_paren) {
     return FALSE;
 }
 
-int is_start_paren(char end_paren, char start_paren) {
+int is_start_paren(char end_paren, char start_paren)
+{
     char check_paren;
 
     if (end_paren == ']') {
