@@ -56,7 +56,6 @@ void test_find_start_paren(void)
     char* str = "[[]]";
     char* forward_p = str + 2;
     int forward_idx = 2;
-    char start_char = str[0];
 
     parenthesis_t a;
     parenthesis_t b;

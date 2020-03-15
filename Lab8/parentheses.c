@@ -2,10 +2,7 @@
 
 size_t get_matching_parentheses(parenthesis_t* parentheses, size_t max_size, const char* str)
 {
-    size_t len_str = strlen(str);
-
     const char* forward_p;
-    const char* backward_p;
     int forward_p_idx = 0;
     int backward_p_idx = 0;
 
@@ -66,20 +63,20 @@ int is_start_paren(char end_paren, char start_paren) {
 
 int is_exist_already_by_opening_idx(parenthesis_t* parentheses, int len_parentheses, int opening_idx)
 {
-    size_t i = 0;
+    int i = 0;
     parenthesis_t cur_parenthesis;
     for (i = 0; i < len_parentheses; i++) {
         cur_parenthesis = *(parentheses + i);
-        if (cur_parenthesis.opening_index == opening_idx) {
+        if ((int)cur_parenthesis.opening_index == opening_idx) {
             return TRUE;
         }
     }
     return FALSE;
 }
 
-int find_start_paren_backward(char* forward_p, int forward_idx, parenthesis_t* parentheses, int len_parentheses)
+int find_start_paren_backward(const char* forward_p, int forward_idx, parenthesis_t* parentheses, int len_parentheses)
 {
-    size_t i;
+    int i;
     char cur_char;
     char end_paren = *forward_p;
     int cur_idx = forward_idx;
@@ -98,7 +95,6 @@ void add_parentheses(parenthesis_t* parentheses, size_t* p_len_parentheses, size
 {
     size_t o_i = (size_t)opening_idx;
     size_t c_i = (size_t)closing_idx;
-    parenthesis_t new_paren;
 
     if (max_size != *p_len_parentheses) {
         (parentheses + *p_len_parentheses)->opening_index = o_i;
@@ -108,8 +104,10 @@ void add_parentheses(parenthesis_t* parentheses, size_t* p_len_parentheses, size
     }    
 }
 
-int compare_paren(const parenthesis_t* first, const parenthesis_t* second)
+int compare_paren(const void* first, const void* second)
 {
-    return first->opening_index - second->opening_index;
+    parenthesis_t* first_ = (parenthesis_t*)first;
+    parenthesis_t* second_ = (parenthesis_t*)second;
+    return first_->opening_index - second_->opening_index;
 }
 

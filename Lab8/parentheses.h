@@ -19,7 +19,8 @@ size_t get_matching_parentheses(parenthesis_t* parentheses, size_t max_size, con
 int is_end_paren(char end_paren);
 int is_start_paren(char end_paren, char start_paren);
 int is_exist_already_by_opening_idx(parenthesis_t* parentheses, int len_parentheses, int opening_idx);
+int find_start_paren_backward(const char* forward_p, int forward_idx, parenthesis_t* parentheses, int len_parentheses);
 void add_parentheses(parenthesis_t* parentheses, size_t* p_len_parentheses, size_t max_size, int opening_idx, int closing_idx);
-int compare_paren(const parenthesis_t* first, const parenthesis_t* second);
+int compare_paren(const void* first, const void* second);
 
 #endif /* PARENTHESES_H */
