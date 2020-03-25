@@ -9,6 +9,7 @@ int main(void)
 
     assert(is_empty(todo_list));
 
+    assert(!add_todo(NULL, 10, "A"));
     assert(add_todo(todo_list, 10, "A"));
     assert(add_todo(todo_list, 22, "B"));
     assert(add_todo(todo_list, 3, "C"));

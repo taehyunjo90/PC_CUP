@@ -34,7 +34,7 @@ void dispose(todo_list_t* todo_list)
     int32_t total_count;
     int32_t max_count;
     
-    if (NULL != p) {
+    if (NULL != todo_list) {
         total_count = p->total_count;
         max_count = p->max_count;
 
