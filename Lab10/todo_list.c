@@ -139,7 +139,7 @@ const char* peek_or_null(todo_list_t* todo_list)
     int32_t max_count;
     
     if (todo_list == NULL) {
-        return false;
+        return NULL;
     }
 
     total_count = p->total_count;
@@ -169,7 +169,7 @@ size_t get_count(todo_list_t* todo_list)
     todo_list_t* p = todo_list;
     
     if (todo_list == NULL) {
-        return false;
+        return 0;
     }
     
     return p->total_count;
@@ -177,7 +177,6 @@ size_t get_count(todo_list_t* todo_list)
 
 bool is_empty(todo_list_t* todo_list)
 {
-        
     if (todo_list == NULL) {
         return false;
     }
