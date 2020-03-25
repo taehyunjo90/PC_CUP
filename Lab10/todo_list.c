@@ -33,7 +33,6 @@ void dispose(todo_list_t* todo_list)
 	todo_list_t* p = todo_list;
 	int32_t total_count;
 	int32_t max_count;
-	size_t len_task;
 
 	total_count = p->total_count;
 	max_count = p->max_count;
@@ -117,6 +116,7 @@ bool complete_todo(todo_list_t* todo_list)
 		max_priority_todo->todo_priority = 0;
 
 		todo_list->total_count--;
+		return true;
 	}
 }
 

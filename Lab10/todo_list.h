@@ -1,8 +1,6 @@
 #ifndef TODO_LIST_H
 #define TODO_LIST_H
 
-#define _CRT_SECURE_NO_WARNINGS
-
 #include <stdint.h>
 #include <stdbool.h>
 #include <stdlib.h>
@@ -33,4 +31,4 @@ size_t get_count(todo_list_t* todo_list);
 
 bool is_empty(todo_list_t* todo_list);
 
-#endif /* TODO_LIST_H */#pragma once
+#endif /* TODO_LIST_H */
