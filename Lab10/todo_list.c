@@ -54,12 +54,16 @@ bool add_todo(todo_list_t* todo_list, const int32_t priority, const char* task)
     int32_t total_count;
     int32_t max_count;
     size_t len_task;
+    
+    if (todo_list == NULL) {
+        return false;
+    }
 
     total_count = p->total_count;
     max_count = p->max_count;
 
     // early exit when is full
-    if (total_count == max_count || todo_list == NULL) {
+    if (total_count == max_count) {
         return false;
     }
 
@@ -91,13 +95,13 @@ bool complete_todo(todo_list_t* todo_list)
 
     int32_t total_count;
     int32_t max_count;
-
-    total_count = p->total_count;
-    max_count = p->max_count;
     
     if (todo_list == NULL) {
         return false;
     }
+
+    total_count = p->total_count;
+    max_count = p->max_count;
 
     for (int32_t i = 0; i < max_count; i++) {
         p++;
@@ -133,13 +137,13 @@ const char* peek_or_null(todo_list_t* todo_list)
 
     int32_t total_count;
     int32_t max_count;
-
-    total_count = p->total_count;
-    max_count = p->max_count;
     
     if (todo_list == NULL) {
         return false;
     }
+
+    total_count = p->total_count;
+    max_count = p->max_count;
 
     for (int32_t i = 0; i < max_count; i++) {
         p++;
