@@ -178,7 +178,7 @@ size_t get_count(todo_list_t* todo_list)
 bool is_empty(todo_list_t* todo_list)
 {
     if (todo_list == NULL) {
-        return false;
+        return true;
     }
     
     if (0 == todo_list->total_count) {
