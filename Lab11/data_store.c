@@ -48,7 +48,7 @@ bool update_email(user_t** users_or_null, size_t id, const char* email)
     return true;
 }
 
-void log_when_update_email(size_t id, const char* old_email, const char* new_email)
+static void log_when_update_email(size_t id, const char* old_email, const char* new_email)
 {
     char log_message[BUFFER];
     FILE* fp = fopen("log.txt", "a");
@@ -65,7 +65,7 @@ void log_when_update_email(size_t id, const char* old_email, const char* new_ema
     fclose(fp);
 }
 
-char* make_secure_email(char* secure_email, const char* email) 
+static char* make_secure_email(char* secure_email, const char* email) 
 {
     const char* p = email;
     int len_email = 0;
@@ -102,7 +102,7 @@ bool update_password(user_t** users_or_null, size_t id, const char* password)
     return true;
 }
 
-void log_when_update_password(size_t id, const char* old_password, const char* new_password)
+static void log_when_update_password(size_t id, const char* old_password, const char* new_password)
 {
     char log_message[BUFFER];
     FILE* fp = fopen("log.txt", "a");
@@ -120,7 +120,7 @@ void log_when_update_password(size_t id, const char* old_password, const char* n
     fclose(fp);
 }
 
-char* make_secure_password(char* secure_password, const char* password)
+static char* make_secure_password(char* secure_password, const char* password)
 {
     const char* p = password;
     int len_pass = 0;
