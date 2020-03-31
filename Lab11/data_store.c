@@ -1,5 +1,13 @@
 #include "data_store.h"
 
+static void log_when_update_email(size_t id, const char* old_email, const char* new_email);
+
+static void log_when_update_password(size_t id, const char* old_password, const char* new_password);
+
+static char* make_secure_email(char* secure_email, const char* email);
+
+static char* make_secure_password(char* secure_password, const char* password);
+
 user_t* get_user_by_id_or_null(user_t** users_or_null, size_t id)
 {
     user_t** p = users_or_null;
