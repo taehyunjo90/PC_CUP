@@ -3,13 +3,14 @@
 hashmap_t* init_hashmap_malloc(size_t length, int(*p_hash_func)(const char* key))
 {
     hashmap_t* hashmap = malloc(sizeof(hashmap_t));
+    size_t i;
 
     hashmap->hash_func = p_hash_func;
     hashmap->length = length;
 
     hashmap->plist = malloc(sizeof(node_t*) * length);
     
-    for (size_t i = 0; i < length; i++) {
+    for (i = 0; i < length; i++) {
         *(hashmap->plist + i) = NULL;
     }
 
@@ -32,7 +33,6 @@ int add_key(hashmap_t* hashmap, const char* key, const int value)
     } else {
         do {
             if (!strcmp(p->key, key)) {
-                // same key
                 return FALSE;
             } else {
                 if (p->next == NULL) {
@@ -51,15 +51,12 @@ node_t* make_node(const char* key, const int value) {
 
     p = malloc(sizeof(node_t));
 
-    // key
     p->key = malloc(sizeof(char) * (key_len + 1));
     strcpy(p->key, key);
     (p->key)[key_len] = '\0';
 
-    // value
     p->value = value;
 
-    // next pointer
     p->next = NULL;
 
     return p;
@@ -81,7 +78,6 @@ int get_value(hashmap_t* hashmap, const char* key)
             return -1;
         } else {
             if (!strcmp(p->key, key)) {
-                // key same
                 return p->value;
             }
             p = p->next;
@@ -105,7 +101,6 @@ int update_value(hashmap_t* hashmap, const char* key, int value)
             return FALSE;
         } else {
             if (!strcmp(p->key, key)) {
-                // key same
                 p->value = value;
                 return TRUE;
             }
@@ -131,7 +126,6 @@ int remove_key(hashmap_t* hashmap, const char* key)
             return FALSE;
         } else {
             if (!strcmp(p->key, key)) {
-                // key same
                 if (pre_p == NULL) {
                     *(hashmap->plist + idx) = p->next;
                     free(p);
@@ -152,8 +146,9 @@ void destroy(hashmap_t* hashmap)
 {
     node_t* p;
     node_t* tmp_p;
+    size_t i;
 
-    for (size_t i = 0; i < hashmap->length; i++) {
+    for (i = 0; i < hashmap->length; i++) {
         p = *(hashmap->plist + i);
         while (p != NULL) {
             tmp_p = p;
