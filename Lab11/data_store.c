@@ -60,11 +60,11 @@ static void log_when_update_email(size_t id, const char* old_email, const char* 
 {
     char log_message[BUFFER];
     FILE* fp = fopen("log.txt", "a");
-#if defined(RELEASE)
     char secure_old_email[MAX_LENGTH];
     char secure_new_email[MAX_LENGTH];
     make_secure_email(secure_old_email, old_email);
     make_secure_email(secure_new_email, new_email);
+#if defined(RELEASE)
     sprintf(log_message, "TRACE: User %d updated email from \"%s\" to \"%s\"\n", id, secure_old_email, secure_new_email);
 #else
     sprintf(log_message, "TRACE: User %d updated email from \"%s\" to \"%s\"\n", id, old_email, new_email);
@@ -114,12 +114,12 @@ static void log_when_update_password(size_t id, const char* old_password, const 
 {
     char log_message[BUFFER];
     FILE* fp = fopen("log.txt", "a");
-
-#if defined(RELEASE)
     char secure_old_password[MAX_LENGTH];
     char secure_new_password[MAX_LENGTH];
     make_secure_password(secure_old_password, old_password);
     make_secure_password(secure_new_password, new_password);
+
+#if defined(RELEASE)
     sprintf(log_message, "TRACE: User %d updated password from \"%s\" to \"%s\"\n", id, secure_old_password, secure_new_password);
 #else
     sprintf(log_message, "TRACE: User %d updated password from \"%s\" to \"%s\"\n", id, old_password, new_password);
