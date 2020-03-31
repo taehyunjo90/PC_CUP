@@ -1,6 +1,6 @@
 #include "hashmap.h"
 
-hashmap_t* init_hashmap_malloc(size_t length, int(*p_hash_func)(const char* key))
+hashmap_t* init_hashmap_malloc(size_t length, int (*p_hash_func)(const char* key))
 {
     hashmap_t* hashmap = malloc(sizeof(hashmap_t));
     size_t i;
@@ -45,7 +45,8 @@ int add_key(hashmap_t* hashmap, const char* key, const int value)
     }
 }
 
-node_t* make_node(const char* key, const int value) {
+node_t* make_node(const char* key, const int value)
+{
     int key_len = strlen(key);
     node_t* p;
 
@@ -128,9 +129,11 @@ int remove_key(hashmap_t* hashmap, const char* key)
             if (!strcmp(p->key, key)) {
                 if (pre_p == NULL) {
                     *(hashmap->plist + idx) = p->next;
+                    free(p->key);
                     free(p);
                 } else {
                     pre_p->next = p->next;
+                    free(p->key);
                     free(p);
                 }
                 return TRUE;
@@ -153,6 +156,7 @@ void destroy(hashmap_t* hashmap)
         while (p != NULL) {
             tmp_p = p;
             p = p->next;
+            free(tmp_p->key);
             free(tmp_p);
         }
     }
